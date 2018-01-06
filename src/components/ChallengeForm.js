@@ -1,65 +1,60 @@
 import React, { Component } from 'react'
-import { Header, Container, Form, Input } from 'semantic-ui-react'
+import { Header, Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { setChallenge } from '../actions/challengeActions'
-import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
-const ChallangeField = styled.label`
-  font-size: 6em;
+const ChallengeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `
-
-// const ChallengeWrapper = styled.div`
-// display: flex;
-// flex-direction: column;
-// height: 100vh;
-// `
-// const ChallengeContentWrapper = styled.div`
-// flex: 1 1 auto;
-// overflow: auto;
-// `
-
+const InputWrapper = styled.div`
+  flex: 1 0 auto;
+`
+const ChallengeInput = styled.input`
+  border-top: 0 none;
+  border-right: 0 none;
+  border-left: 0 none;
+  border-bottom: 1px solid #000;
+`
 const example =
-  'Example: Try to create a web app that will help people define their fears and take a next step in their lives.'
+  'Example: Try to make a app that helps you put down your fears and take a next step in your life.'
 
 class ChallengeForm extends Component {
-  static propTypes = {
-    challenge: PropTypes.string
+  state = {
+    challenge: ''
   }
-  handleSubmit = e => {
+  _handleSubmit = e => {
     e.preventDefault()
+    this.props.setChallenge(this.state.challenge)
+    this.props.history.push('/define')
   }
-  handleChange = (e, { name, value }) => {
-    this.props.setChallenge(value)
+  _handleChange = e => {
+    this.setState({ challenge: e.target.value })
   }
   componentDidMount() {
     this.challengeInput.focus()
   }
   render() {
-    const { challenge } = this.props
+    const { challenge } = this.state
     return (
-      <Container text>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group inline>
-            <Form.Field>
-              <ChallangeField>What if I</ChallangeField>
-              <Input
-                ref={input => (this.challengeInput = input)}
-                placeholder={example}
-                value={challenge}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-          </Form.Group>
-          <Form.Button content="Continue" />
-        </Form>
-      </Container>
+      <Form onSubmit={this._handleSubmit}>
+        <ChallengeWrapper>
+          <Header as="h1">What if I</Header>
+          <InputWrapper>
+            <input
+              ref={input => (this.challengeInput = input)}
+              placeholder={example}
+              value={challenge}
+              onChange={this._handleChange}
+            />
+          </InputWrapper>
+        </ChallengeWrapper>
+        <Button onClick={this._handleSubmit}>Next (Enter)</Button>
+      </Form>
     )
   }
 }
 
-const mapStateToProps = ({ challenge }) => ({
-  challenge: challenge.challenge
-})
-
-export default connect(mapStateToProps, { setChallenge })(ChallengeForm)
+export default withRouter(connect(null, { setChallenge })(ChallengeForm))

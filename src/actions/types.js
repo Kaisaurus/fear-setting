@@ -1,1 +1,7 @@
 export const SET_CHALLENGE = 'SET_CHALLENGE'
+export const SET_FEARS = 'SET_FEARS'
+export const SET_PREVENTIONS = 'SET_PREVENTIONS'
+export const SET_FIXES = 'SET_FIXES'
+export const SET_BENEFTIS = 'SET_BENEFTIS'
+export const SET_CONSEQUENCES = 'SET_CONSEQUENCES'
+export const SET_ACCEPTABLE = 'SET_ACCEPTABLE'
