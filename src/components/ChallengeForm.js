@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { setChallenge } from '../actions/challengeActions'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
+import { getTranslate } from 'react-localize-redux'
 
 const ChallengeWrapper = styled.div`
   display: flex;
@@ -38,10 +39,11 @@ class ChallengeForm extends Component {
   }
   render() {
     const { challenge } = this.state
+    const { translate } = this.props
     return (
       <Form onSubmit={this._handleSubmit}>
         <ChallengeWrapper>
-          <Header as="h1">What if I</Header>
+          <Header as="h1" />
           <InputWrapper>
             <input
               ref={input => (this.challengeInput = input)}
@@ -51,10 +53,16 @@ class ChallengeForm extends Component {
             />
           </InputWrapper>
         </ChallengeWrapper>
-        <Button onClick={this._handleSubmit}>Next (Enter)</Button>
+        <Button onClick={this._handleSubmit}>{translate('button.next')}</Button>
       </Form>
     )
   }
 }
 
-export default withRouter(connect(null, { setChallenge })(ChallengeForm))
+const mapStateToProps = state => ({
+  translate: getTranslate(state.locale)
+})
+
+export default withRouter(
+  connect(mapStateToProps, { setChallenge })(ChallengeForm)
+)

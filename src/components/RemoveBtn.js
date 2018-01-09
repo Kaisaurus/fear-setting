@@ -4,11 +4,14 @@ import { Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 const BorderlessBtn = styled(Button)`
-  border: 0 none;
+  && {
+    border: none;
+    background: transparent;
+  }
 `
 
 const RemoveBtn = props => {
-  return <Button icon="trash" onClick={props.onClick || undefined} basic />
+  return <BorderlessBtn icon="remove" aria-label={props.label} />
 }
 
 RemoveBtn.propTypes = {

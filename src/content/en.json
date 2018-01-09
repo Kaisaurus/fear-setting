@@ -1,0 +1,22 @@
+{
+  "test": "test",
+  "what_if_txt": "What if I",
+  "button": {
+    "add": "Add",
+    "next": "Next",
+    "back": "Back",
+    "remove": "Remove"
+  },
+  "example": {
+    "challenge": "",
+    "fears": [
+      "Example: It will take forever to complete it",
+      "Example: No one will use it",
+      "Example: I won't be able to complete it because of a technical hurdle"
+    ]
+  },
+  "quote": {
+    "quote_1": "Named must your fear be before banish it you can.",
+    "author_1": "Yoda"
+  }
+}
