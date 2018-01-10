@@ -1,46 +1,42 @@
 import React, { Component } from 'react'
-import { Header, Icon, Form, Button, Input } from 'semantic-ui-react'
+import { Icon, Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { setFears } from '../actions/challengeActions'
+import { setFears } from '../../actions/challengeActions'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { getTranslate } from 'react-localize-redux'
-import RemoveBtn from './RemoveBtn'
+import RemoveBtn from '../RemoveBtn'
+import AlertTxt from '../AlertTxt'
 
-const examples = [
-  'Example: It will take forever to complete it ',
-  'Example: No one will use it',
-  "Example: I won't be able to complete it because of a technical hurdle"
-]
 const InputWrapper = styled.div`
   flex: 1 0 auto;
 `
 const FormField = styled(Form.Field)`
-  display: flex !important;
-  /* justify-content: center !important; */
+  & {
+    display: flex;
+  }
 `
-class FearsForm extends Component {
+class PreventForm extends Component {
   static propTypes = {
-    // challenge: PropTypes.string
+    preventions: PropTypes.array
   }
   state = {
-    fears: Array(examples.length).fill(''),
+    preventions: this.props.fears,
     empty: false
   }
   _handleSubmit = e => {
     e.preventDefault()
     const submittedFears = this.state.fears.filter(fear => fear !== '')
-    console.log(submittedFears)
     if (submittedFears.length > 0) {
       this.props.setFears(submittedFears)
+      this.props.history.push('/prevent')
     } else {
       this.setState({ empty: true })
     }
-    // this.props.history.push('/define')
   }
   componentDidMount() {
-    // this.challengeInput.focus()
+    this.firstInput.focus()
   }
   _addField = () => {
     this.setState(prevState => ({
@@ -72,12 +68,14 @@ class FearsForm extends Component {
     return (
       <Form onSubmit={this._handleSubmit} ref={form => (this.form = form)}>
         {fears.map((fear, index) => {
+          const ref = index === 0 ? input => (this.firstInput = input) : false
           return (
             <FormField inline key={index}>
               <label>{index + 1}.</label>
               <InputWrapper>
                 <input
-                  placeholder={examples[index]}
+                  ref={ref}
+                  placeholder={translate(`example.fear_${index + 1}`) || ''}
                   value={fears[index]}
                   onChange={this._handleChange(index)}
                 />
@@ -91,7 +89,7 @@ class FearsForm extends Component {
             </FormField>
           )
         })}
-        {empty && <p>You must fill in at least 1 fear</p>}
+        {empty && <AlertTxt>{translate('fear.alert')}</AlertTxt>}
         <Button onClick={this._addField} basic>
           <Icon name="plus" />
           {translate('button.add')}
@@ -105,8 +103,9 @@ class FearsForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  translate: getTranslate(state.locale)
+const mapStateToProps = ({ locale, challenge }) => ({
+  translate: getTranslate(locale),
+  fears: challenge.fears
 })
 
-export default withRouter(connect(mapStateToProps, { setFears })(FearsForm))
+export default withRouter(connect(mapStateToProps, { setFears })(PreventForm))

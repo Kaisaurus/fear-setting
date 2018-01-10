@@ -2,11 +2,11 @@ import * as types from '../actions/types'
 
 const defaultState = {
   challenge: '',
-  fears: [],
-  preventions: [],
-  fixes: [],
-  benefits: [],
-  consequences: [],
+  fears: ['', '', ''],
+  preventions: {},
+  fixes: {},
+  benefits: [''],
+  consequences: [''],
   acceptable: false
 }
 

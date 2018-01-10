@@ -1,5 +1,5 @@
 import { initialize } from 'react-localize-redux'
-import { addTranslation } from 'react-localize-redux'
+// import { addTranslation } from 'react-localize-redux'
 import { addTranslationForLanguage } from 'react-localize-redux'
 import { setActiveLanguage } from 'react-localize-redux'
 

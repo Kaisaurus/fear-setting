@@ -1,6 +1,45 @@
 {
-  "test": "test",
-  "what_if_txt": "What if I",
+  "empty_challenge": "go back to fill this in",
+  "define": {
+    "what_if": "What if I",
+    "alert": "Fill in the above to continue!"
+  },
+  "fear": {
+    "title":
+      "Define the worst things you can image happening if you took this step",
+    "subtitle":
+      "Putting these fears down in words will help you get them out of your head. In the following steps we will see if there is anything actionable to reduce these fears and if they weigh up against the down-side of inaction.",
+    "alert": "Fill in at least 1 item to continue"
+  },
+  "prevent": {
+    "title":
+      "What can I do to prevent or decrease the likelihood of these happening",
+    "subtitle":
+      "This will help you see if there is anything actionable to decrease your fear."
+  },
+  "fix": {
+    "title":
+      "If this happens, what can I do to fix this? Who could I ask for help?",
+    "subtitle":
+      "Ask yourself has anyone less driven or less clever ever got them selves out of this situation? Probably yes, how would they have done it?"
+  },
+  "benefits": {
+    "title": "What are the benefits of an attempt or even a partial success?"
+  },
+  "inaction": {
+    "title": "What is the cost of inaction?",
+    "subtitle":
+      "We often worry about the consequences of doing something but less often think about the consequences of inaction.",
+    "6_months": "6 Months",
+    "1_year": "1 Year",
+    "3_years": "3 Years"
+  },
+  "choice": {
+    "yes": "Yes",
+    "no": "No",
+    "title": "Is inaction acceptable?",
+    "remind": "Remind my future self"
+  },
   "button": {
     "add": "Add",
     "next": "Next",
@@ -8,15 +47,17 @@
     "remove": "Remove"
   },
   "example": {
-    "challenge": "",
-    "fears": [
-      "Example: It will take forever to complete it",
-      "Example: No one will use it",
+    "define": "Example: Try to make a web app that helps put down my thoughts",
+    "fear_1": "Example: It will take forever to complete it",
+    "fear_2": "Example: No one will use it",
+    "fear_3":
       "Example: I won't be able to complete it because of a technical hurdle"
-    ]
   },
   "quote": {
     "quote_1": "Named must your fear be before banish it you can.",
-    "author_1": "Yoda"
+    "author_1": "Yoda",
+    "quote_2":
+      "Do something that scares you everyday, you have nothing to lose but fear itself",
+    "author_2": "Dalai Lama"
   }
 }

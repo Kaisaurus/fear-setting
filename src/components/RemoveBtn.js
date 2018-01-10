@@ -11,7 +11,14 @@ const BorderlessBtn = styled(Button)`
 `
 
 const RemoveBtn = props => {
-  return <BorderlessBtn icon="remove" aria-label={props.label} />
+  return (
+    <BorderlessBtn
+      type="button"
+      icon="remove"
+      aria-label={props.label}
+      onClick={props.onClick}
+    />
+  )
 }
 
 RemoveBtn.propTypes = {

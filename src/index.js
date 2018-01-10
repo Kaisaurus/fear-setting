@@ -5,7 +5,8 @@ import './index.css'
 import App from './containers/App'
 import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
-import store from './utils/store'
+import { PersistGate } from 'redux-persist/es/integration/react'
+import { store, persistor } from './utils/store'
 import { initLocalize } from './utils/localization'
 import 'semantic-ui-css/semantic.min.css'
 import { ThemeProvider } from 'styled-components'
@@ -14,13 +15,15 @@ import mainTheme from './themes/mainTheme'
 initLocalize(store)
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <ThemeProvider theme={mainTheme}>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </Provider>,
+  <PersistGate persistor={persistor}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider theme={mainTheme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
+  </PersistGate>,
   document.getElementById('root')
 )
 

@@ -17,14 +17,15 @@ const QuoteContent = styled.q`
 const Quote = props => {
   return (
     <QuoteContainer text textAlign="center">
-      <QuoteContent>{props.children}</QuoteContent>
-      {props.author && <AuthorP>-{props.author}</AuthorP>}
+      <QuoteContent>{props.translate(`quote.quote_${props.id}`)}</QuoteContent>
+      <AuthorP>{props.translate(`quote.author_${props.id}`)}</AuthorP>
     </QuoteContainer>
   )
 }
 
 Quote.propTypes = {
-  author: PropTypes.string
+  translate: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired
 }
 
 export default Quote
