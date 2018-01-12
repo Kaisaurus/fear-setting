@@ -3,8 +3,8 @@ import * as types from '../actions/types'
 const defaultState = {
   challenge: '',
   fears: ['', '', ''],
-  preventions: {},
-  fixes: {},
+  preventions: [['', '', '']],
+  fixes: [['', '', '']],
   benefits: [''],
   consequences: [''],
   acceptable: false

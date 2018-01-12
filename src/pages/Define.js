@@ -10,23 +10,11 @@ import PageWrapper from '../components/PageWrapper'
 
 class Define extends Component {
   static propTypes = {
-    challenge: PropTypes.string.isRequired
+    challenge: PropTypes.string.isRequired,
+    translate: PropTypes.func.isRequired
   }
-  state = {
-    challenge: this.props.challenge
-  }
-  handleUpdate = e => {
-    this.setState({ challenge: e.target.value })
-  }
-  handleNext = e => {
-    // e.preventDefault()
-    if (this.state.challenge !== '') {
-      this.props.setChallenge(this.state.challenge)
-      this.props.history.push('/define')
-    } else {
-      this.setState({ empty: true })
-    }
-  }
+  handleUpdate = challenge => this.props.setChallenge(challenge)
+  handleNext = () => this.props.history.push('/define')
   render() {
     const { translate, challenge } = this.props
     return (

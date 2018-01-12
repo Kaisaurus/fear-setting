@@ -33,14 +33,14 @@ class DefineForm extends Component {
     this.defineInput.focus()
   }
   handleNext = () => {
-    this.props.handleChange()
+    const { challenge } = this.state
+    this.props.handleUpdate(challenge)
     this.props.handleNext()
   }
   handleChange = event => {
-    // UNDER CONSTRUCTION
-    console.log('boo')
-    console.log(event.target.value)
-    this.setState({ challenge: event.target.value })
+    const challenge = event.target.value
+    this.setState({ challenge })
+    this.props.handleUpdate(challenge)
   }
   render() {
     const { challenge, showAlert } = this.state
@@ -54,7 +54,7 @@ class DefineForm extends Component {
               ref={input => (this.defineInput = input)}
               placeholder={translate('example.define')}
               value={challenge}
-              onChange={this._handleChange}
+              onChange={this.handleChange}
             />
           </InputWrapper>
         </ChallengeWrapper>

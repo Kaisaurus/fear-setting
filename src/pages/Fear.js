@@ -13,7 +13,8 @@ import MultiInputForm from '../components/forms/MultiInputForm'
 class Fear extends Component {
   static propTypes = {
     fears: PropTypes.array.isRequired,
-    challenge: PropTypes.string
+    challenge: PropTypes.string,
+    translate: PropTypes.func.isRequired
   }
   state = {
     fears: this.props.fears

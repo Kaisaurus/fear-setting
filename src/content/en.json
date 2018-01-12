@@ -9,22 +9,27 @@
       "Define the worst things you can image happening if you took this step",
     "subtitle":
       "Putting these fears down in words will help you get them out of your head. In the following steps we will see if there is anything actionable to reduce these fears and if they weigh up against the down-side of inaction.",
-    "alert": "Fill in at least 1 item to continue"
+    "alert": "Please fill in at least 1 item to continue"
   },
   "prevent": {
     "title":
       "What can I do to prevent or decrease the likelihood of these happening",
     "subtitle":
-      "This will help you see if there is anything actionable to decrease your fear."
+      "This will help you see if there is anything actionable to decrease your fear.",
+    "alert":
+      "Please fill in at least 1 item to continue, this doesn't have to be big, it is just part of the exercise to see if there is anything in your control."
   },
   "fix": {
     "title":
       "If this happens, what can I do to fix this? Who could I ask for help?",
     "subtitle":
-      "Ask yourself has anyone less driven or less clever ever got them selves out of this situation? Probably yes, how would they have done it?"
+      "Ask yourself has anyone less driven or less clever ever got them selves out of this situation? Probably yes, how would they have done it?",
+    "alert":
+      "Please fill in at least 1 item to continue, this doesn't have to be big, it is just part of the exercise to see if there is anything in your control."
   },
   "benefits": {
-    "title": "What are the benefits of an attempt or even a partial success?"
+    "title": "What are the benefits of an attempt or even a partial success?",
+    "alert": "Surely there has to be a benefit to it?"
   },
   "inaction": {
     "title": "What is the cost of inaction?",
@@ -32,9 +37,12 @@
       "We often worry about the consequences of doing something but less often think about the consequences of inaction.",
     "6_months": "6 Months",
     "1_year": "1 Year",
-    "3_years": "3 Years"
+    "3_years": "3 Years",
+    "alert":
+      "Please fill these in to see how these weigh up against the benefit and risks."
   },
   "choice": {
+    "overview": "Overview",
     "yes": "Yes",
     "no": "No",
     "title": "Is inaction acceptable?",
@@ -47,11 +55,32 @@
     "remove": "Remove"
   },
   "example": {
-    "define": "Example: Try to make a web app that helps put down my thoughts",
+    "define": "Example: Try to make a web app that helps make big decisions",
     "fear_1": "Example: It will take forever to complete it",
     "fear_2": "Example: No one will use it",
     "fear_3":
-      "Example: I won't be able to complete it because of a technical hurdle"
+      "Example: I won't be able to complete it because of a technical hurdle",
+    "prevent_1": "Example: focus on only core functionality",
+    "prevent_2":
+      "Example: give development of this project high priority until I complete the core functionality",
+    "prevent_3":
+      "Example: Outsource parts if possible to be able to focus on the product",
+    "fix_1":
+      "Example: Ask my friend who is a freelance web developer for paid help.",
+    "fix_2":
+      "Example: Put the project aside for a while, focus on more pressing things in my life",
+    "fix_3": "Example: Be patient.",
+    "benefit_1":
+      "Example: I will have made a useful tool for myself and others",
+    "benefit_2":
+      "Example: I will have a working product to show for in my next job interview",
+    "benefit_3":
+      "Example: I could expand it to have a paid feature so that I can continue making apps that I think are useful.",
+    "incation_1":
+      "Example: I still won't have much to show for in job interviews.",
+    "incation_2":
+      "Example: Working for a employer I will probably wonder how it would have been if I tried to start a own project while I had the time",
+    "incation_3": "Example: I will probably have forgotten all about it."
   },
   "quote": {
     "quote_1": "Named must your fear be before banish it you can.",
