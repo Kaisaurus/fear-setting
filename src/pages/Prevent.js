@@ -7,26 +7,56 @@ import Title from '../components/Title'
 import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setPreventions } from '../actions/challengeActions'
-import Challenge from '../components/overview/Challenge'
+import { submitNotEmptyItems } from '../utils/index'
+// import Challenge from '../components/overview/Challenge'
 import MultiInputForm from '../components/forms/MultiInputForm'
 
 class Prevent extends Component {
   static propTypes = {
     fears: PropTypes.array.isRequired,
-    preventions: PropTypes.array.isRequired,
-    challenge: PropTypes.string,
     translate: PropTypes.func.isRequired
   }
   state = {
-    currentFear: 0,
-    preventions: this.props.preventions
+    currentFear: this.props.location.state.currentFear || 0,
+    preventions: this.props.fears[0].preventions
   }
-  handleUpdate = preventions => this.props.setPreventions(preventions)
+  componentWillReceiveProps(nextProps) {
+    const { currentFear } = this.state
+    this.setState({ preventions: nextProps.fears[currentFear].preventions })
+  }
+
+  handleAdd = () => {
+    this.setState(prevState => ({
+      preventions: [...prevState.preventions].concat('')
+    }))
+  }
+  handleChange = preventions => {
+    this.props.setPreventions(preventions, this.state.currentFear)
+  }
   handleNext = () => {
-    // this.props.history.push('/prevent')
+    const { currentFear } = this.state
+    const { fears } = this.props
+    if (currentFear < fears.length - 1) {
+      this.setState(prevState => ({
+        currentFear: prevState.currentFear + 1,
+        preventions: fears[currentFear + 1].preventions
+      }))
+    } else {
+      submitNotEmptyItems(fears, setPreventions, 'preventions')
+      this.props.history.push('/fix')
+    }
   }
   handleBack = () => {
-    this.props.history.push('/define')
+    const { currentFear } = this.state
+    const { fears } = this.props
+    if (currentFear > 0) {
+      this.setState(prevState => ({
+        currentFear: prevState.currentFear - 1,
+        preventions: fears[currentFear - 1].preventions
+      }))
+    } else {
+      this.props.history.push('/define')
+    }
   }
   render() {
     const { preventions, currentFear } = this.state
@@ -36,16 +66,18 @@ class Prevent extends Component {
         {/* <Challenge challenge={challenge} translate={translate} /> */}
         <Title>{translate('prevent.title')}</Title>
         <Subtitle>{translate('prevent.subtitle')}</Subtitle>
+        <Subtitle>{fears[currentFear].fear}</Subtitle>
         <Subtitle>
-          {currentFear + 1}/ {fears.length} {fears[currentFear]}
+          {currentFear + 1} / {fears.length}
         </Subtitle>
         <MultiInputForm
-          items={preventions[currentFear]}
+          items={preventions}
           translateItem={'prevent'}
           translate={translate}
-          handleUpdate={this.handleUpdate}
+          handleChange={this.handleChange}
           handleNext={this.handleNext}
           handleBack={this.handleBack}
+          handleAdd={this.handleAdd}
         />
       </PageWrapper>
     )
@@ -53,9 +85,7 @@ class Prevent extends Component {
 }
 const mapStateToProps = ({ locale, challenge }) => ({
   translate: getTranslate(locale),
-  fears: challenge.fears,
-  preventions: challenge.preventions,
-  challenge: challenge.challenge
+  fears: challenge.fears
 })
 
 export default withRouter(connect(mapStateToProps, { setPreventions })(Prevent))

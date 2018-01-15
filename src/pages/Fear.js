@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Title from '../components/Title'
 import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
-import { setFears } from '../actions/challengeActions'
+import { setFears, removeFear } from '../actions/challengeActions'
 import Challenge from '../components/overview/Challenge'
 import MultiInputForm from '../components/forms/MultiInputForm'
 
@@ -19,9 +19,27 @@ class Fear extends Component {
   state = {
     fears: this.props.fears
   }
-  handleUpdate = fears => this.props.setFears(fears)
-  handleNext = () => this.props.history.push('/prevent')
-  handleBack = () => this.props.history.push('/')
+  componentWillReceiveProps(nextProps) {
+    this.setState({ fears: nextProps.fears })
+  }
+  handleAdd = () => {
+    this.setState(prevState => ({ fears: [...prevState.fears].concat('') }))
+  }
+  handleChange = fears => this.props.setFears(fears)
+  handleRemove = index => this.props.removeFear(index)
+  submitNotEmptyFears = () => {
+    this.state.fears.forEach((fear, index) => {
+      fear === '' && this.props.removeFear(index)
+    })
+  }
+  handleNext = () => {
+    this.submitNotEmptyFears()
+    this.props.history.push('/prevent')
+  }
+  handleBack = () => {
+    this.submitNotEmptyFears()
+    this.props.history.push('/')
+  }
   render() {
     const { fears } = this.state
     const { translate, challenge } = this.props
@@ -34,9 +52,11 @@ class Fear extends Component {
           items={fears}
           translateItem={'fear'}
           translate={translate}
-          handleUpdate={this.handleUpdate}
+          handleChange={this.handleChange}
+          handleRemove={this.handleRemove}
           handleNext={this.handleNext}
           handleBack={this.handleBack}
+          handleAdd={this.handleAdd}
         />
       </PageWrapper>
     )
@@ -44,8 +64,10 @@ class Fear extends Component {
 }
 const mapStateToProps = ({ locale, challenge }) => ({
   translate: getTranslate(locale),
-  fears: challenge.fears,
+  fears: challenge.fears.map(fear => fear.fear),
   challenge: challenge.challenge
 })
 
-export default withRouter(connect(mapStateToProps, { setFears })(Fear))
+export default withRouter(
+  connect(mapStateToProps, { setFears, removeFear })(Fear)
+)
