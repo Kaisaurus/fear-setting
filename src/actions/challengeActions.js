@@ -10,9 +10,9 @@ export function setFears(fears) {
     dispatch({ type: types.SET_FEARS, payload: fears })
   }
 }
-export function removeFear(index) {
+export function removeFears(index) {
   return dispatch => {
-    dispatch({ type: types.REMOVE_FEAR, payload: index })
+    dispatch({ type: types.REMOVE_FEARS, payload: index })
   }
 }
 export function setPreventions(preventions, fearIndex) {

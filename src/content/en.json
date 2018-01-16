@@ -8,7 +8,7 @@
     "title":
       "Define the worst things you can image happening if you took this step",
     "subtitle":
-      "Putting these fears down in words will help you get them out of your head. In the following steps we will see if there is anything actionable to reduce these fears and if they weigh up against the down-side of inaction.",
+      "Fear of the unkown is generally far worse than something specific.",
     "alert": "Please fill in at least 1 item to continue"
   },
   "prevent": {
@@ -28,18 +28,24 @@
       "Please fill in at least 1 item to continue, this doesn't have to be big, it is just part of the exercise to see if there is anything in your control."
   },
   "benefit": {
-    "title": "What are the benefits of an attempt or even a partial success?",
+    "title": "What are the benefits of an attempt or even a (partial) success?",
     "alert": "Surely there has to be a benefit to it?"
   },
   "inaction": {
     "title": "What is the cost of inaction?",
     "subtitle":
       "We often worry about the consequences of doing something but less often think about the consequences of inaction.",
-    "6_months": "6 Months",
-    "1_year": "1 Year",
-    "3_years": "3 Years",
+    "6_months": "in 6 Months",
+    "1_year": "in 1 Year",
+    "3_years": "in 3 Years",
     "alert":
-      "Please fill these in to see how these weigh up against the benefit and risks."
+      "All fields are required. This can be anything, even \"I will have forgotten all about it\""
+  },
+  "overview": {
+    "overview": "Overview",
+    "fears": "The worst that can happen",
+    "benefits": "Benefits of a attempt or (partial) success",
+    "consequences": "Consequences of inaction"
   },
   "choice": {
     "overview": "Overview",

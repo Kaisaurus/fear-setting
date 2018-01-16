@@ -14,6 +14,7 @@ const FormField = styled(Form.Field)`
   }
 `
 class MultiInputForm extends Component {
+  static displayName = 'MultiInputForm'
   static propTypes = {
     items: PropTypes.array.isRequired,
     translateItem: PropTypes.string.isRequired,
@@ -34,31 +35,23 @@ class MultiInputForm extends Component {
     this.firstInput.focus()
   }
   handleRemove = index => event => {
-    const { handleRemove } = this.props
-    this.setState(prevState => {
-      const newItems = [...prevState.items]
-      newItems.splice(index, 1)
-      return { items: newItems }
-    })
-    handleRemove(index)
+    const newItems = [...this.state.items]
+    newItems.splice(index, 1)
+    this.props.handleChange(newItems)
   }
   isItemsNotEmpty = () => {
-    return this.state.items.filter(item => item !== '').length > 0
+    return !!this.state.items.find(item => item !== '')
   }
   handleNext = e => {
-    const { handleNext } = this.props
     this.isItemsNotEmpty()
-      ? handleNext(this.firstInput)
+      ? this.props.handleNext(this.firstInput)
       : this.setState({ showAlert: true })
   }
   handleChange = index => event => {
-    const { handleChange } = this.props
-    const { items } = this.state
     if (this.isItemsNotEmpty()) this.setState({ showAlert: false })
-    const newItems = [...items]
+    const newItems = [...this.state.items]
     newItems[index] = event.target.value
-    handleChange(newItems)
-    // state is updated through parents handleChange function
+    this.props.handleChange(newItems)
   }
   render() {
     const { translate, translateItem, handleAdd, handleBack } = this.props
@@ -99,7 +92,7 @@ class MultiInputForm extends Component {
         <Button type="button" onClick={handleBack}>
           {translate('button.back')}
         </Button>
-        <Button type="submit" onClick={this.handleNext}>
+        <Button type="button" onClick={this.handleNext}>
           {translate('button.next')}
         </Button>
       </Form>

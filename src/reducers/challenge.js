@@ -1,6 +1,10 @@
 import * as types from '../actions/types'
 
-const defaultFear = { fear: '', preventions: ['', ''], fixes: ['', ''] }
+const defaultFear = {
+  fear: '',
+  preventions: Array(2).fill(''),
+  fixes: Array(2).fill('')
+}
 const defaultState = {
   challenge: '',
   fears: Array(3).fill(defaultFear),
@@ -20,19 +24,20 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         fears: action.payload.map((fear, index) => {
-          // this is not pretty...  any better way?
-          const preventions = state.fears[index]
-            ? state.fears[index].preventions
-            : defaultFear.preventions
-          const fixes = state.fears[index]
-            ? state.fears[index].fixes
-            : defaultFear.fixes
+          const preventions =
+            (state.fears[index] && state.fears[index].preventions) ||
+            defaultFear.preventions
+          const fixes =
+            (state.fears[index] && state.fears[index].fixes) ||
+            defaultFear.fixes
           return { fear, preventions, fixes }
         })
       }
-    case types.REMOVE_FEAR: {
+    case types.REMOVE_FEARS: {
       const fears = state.fears
-      fears.splice(action.payload, 1)
+      action.payload.reverse().forEach(index => {
+        fears.splice(index, 1)
+      })
       return {
         ...state,
         fears

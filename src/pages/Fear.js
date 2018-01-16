@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Title from '../components/Title'
 import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
-import { setFears, removeFear } from '../actions/challengeActions'
+import { setFears, removeFears } from '../actions/challengeActions'
 import Challenge from '../components/overview/Challenge'
 import MultiInputForm from '../components/forms/MultiInputForm'
 
@@ -26,11 +26,13 @@ class Fear extends Component {
     this.setState(prevState => ({ fears: [...prevState.fears].concat('') }))
   }
   handleChange = fears => this.props.setFears(fears)
-  handleRemove = index => this.props.removeFear(index)
+  handleRemove = index => this.props.removeFears([index])
   submitNotEmptyFears = () => {
-    this.state.fears.forEach((fear, index) => {
-      fear === '' && this.props.removeFear(index)
-    })
+    const emptyFears = this.state.fears.reduce((removeList, fear, index) => {
+      fear === '' && removeList.push(index)
+      return removeList
+    }, [])
+    this.props.removeFears(emptyFears)
   }
   handleNext = () => {
     this.submitNotEmptyFears()
@@ -69,5 +71,5 @@ const mapStateToProps = ({ locale, challenge }) => ({
 })
 
 export default withRouter(
-  connect(mapStateToProps, { setFears, removeFear })(Fear)
+  connect(mapStateToProps, { setFears, removeFears })(Fear)
 )

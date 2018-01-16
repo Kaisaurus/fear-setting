@@ -4,10 +4,9 @@ import { withRouter } from 'react-router-dom'
 import { getTranslate } from 'react-localize-redux'
 import PropTypes from 'prop-types'
 import Title from '../components/Title'
-import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setConsequences } from '../actions/challengeActions'
-import MultiInputForm from '../components/forms/MultiInputForm'
+import InactionForm from '../components/forms/InactionForm'
 import { handleAdd } from '../utils/index'
 
 class Inaction extends Component {
@@ -22,8 +21,8 @@ class Inaction extends Component {
     this.setState({ consequences: nextProps.consequences })
   }
   handleAdd = () => handleAdd(this, 'consequences')
-  handleChange = consequences => this.props.setBenefits(consequences)
-  handleNext = () => this.props.history.push('/inaction')
+  handleChange = consequences => this.props.setConsequences(consequences)
+  handleNext = () => this.props.history.push('/choice')
   handleBack = () => this.props.history.push('/benefits')
   render() {
     const { consequences } = this.state
@@ -31,14 +30,13 @@ class Inaction extends Component {
     return (
       <PageWrapper>
         <Title>{translate('inaction.title')}</Title>
-        <MultiInputForm
+        <InactionForm
           items={consequences}
           translateItem={'inaction'}
           translate={translate}
           handleChange={this.handleChange}
           handleNext={this.handleNext}
           handleBack={this.handleBack}
-          handleAdd={this.handleAdd}
         />
       </PageWrapper>
     )

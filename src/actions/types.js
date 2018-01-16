@@ -1,6 +1,6 @@
 export const SET_CHALLENGE = 'SET_CHALLENGE'
 export const SET_FEARS = 'SET_FEARS'
-export const REMOVE_FEAR = 'REMOVE_FEAR'
+export const REMOVE_FEARS = 'REMOVE_FEARS'
 export const SET_PREVENTIONS = 'SET_PREVENTIONS'
 export const SET_FIXES = 'SET_FIXES'
 export const SET_BENEFTIS = 'SET_BENEFTIS'

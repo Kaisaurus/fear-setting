@@ -19,6 +19,7 @@ const InputWrapper = styled.div`
 // `
 
 class DefineForm extends Component {
+  static displayName = 'DefineForm'
   static propTypes = {
     challenge: PropTypes.string.isRequired,
     handleUpdate: PropTypes.func.isRequired,
@@ -32,6 +33,9 @@ class DefineForm extends Component {
   componentDidMount() {
     this.defineInput.focus()
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ challenge: nextProps.challenge })
+  }
   handleNext = () => {
     const { challenge } = this.state
     this.props.handleUpdate(challenge)
@@ -39,7 +43,6 @@ class DefineForm extends Component {
   }
   handleChange = event => {
     const challenge = event.target.value
-    this.setState({ challenge })
     this.props.handleUpdate(challenge)
   }
   render() {
