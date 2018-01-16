@@ -7,3 +7,9 @@ export const submitNotEmptyItems = (items, action, childName) => {
     action(notEmptyItems, index)
   })
 }
+
+export const handleAdd = (component, subject) => {
+  component.setState(prevState => ({
+    [subject]: [...prevState[subject]].concat('')
+  }))
+}

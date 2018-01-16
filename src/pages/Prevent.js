@@ -8,8 +8,8 @@ import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setPreventions } from '../actions/challengeActions'
 import { submitNotEmptyItems } from '../utils/index'
-// import Challenge from '../components/overview/Challenge'
 import MultiInputForm from '../components/forms/MultiInputForm'
+import { handleAdd } from '../utils/index'
 
 class Prevent extends Component {
   static propTypes = {
@@ -17,23 +17,19 @@ class Prevent extends Component {
     translate: PropTypes.func.isRequired
   }
   state = {
-    currentFear: this.props.location.state.currentFear || 0,
+    currentFear:
+      (this.props.location.state && this.props.location.state.currentFear) || 0,
     preventions: this.props.fears[0].preventions
   }
   componentWillReceiveProps(nextProps) {
     const { currentFear } = this.state
     this.setState({ preventions: nextProps.fears[currentFear].preventions })
   }
-
-  handleAdd = () => {
-    this.setState(prevState => ({
-      preventions: [...prevState.preventions].concat('')
-    }))
-  }
+  handleAdd = () => handleAdd(this, 'preventions')
   handleChange = preventions => {
     this.props.setPreventions(preventions, this.state.currentFear)
   }
-  handleNext = () => {
+  handleNext = firstInput => {
     const { currentFear } = this.state
     const { fears } = this.props
     if (currentFear < fears.length - 1) {
@@ -41,6 +37,7 @@ class Prevent extends Component {
         currentFear: prevState.currentFear + 1,
         preventions: fears[currentFear + 1].preventions
       }))
+      firstInput.focus()
     } else {
       submitNotEmptyItems(fears, setPreventions, 'preventions')
       this.props.history.push('/fix')
@@ -63,7 +60,6 @@ class Prevent extends Component {
     const { translate, fears } = this.props
     return (
       <PageWrapper>
-        {/* <Challenge challenge={challenge} translate={translate} /> */}
         <Title>{translate('prevent.title')}</Title>
         <Subtitle>{translate('prevent.subtitle')}</Subtitle>
         <Subtitle>{fears[currentFear].fear}</Subtitle>

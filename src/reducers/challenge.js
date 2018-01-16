@@ -4,8 +4,8 @@ const defaultFear = { fear: '', preventions: ['', ''], fixes: ['', ''] }
 const defaultState = {
   challenge: '',
   fears: Array(3).fill(defaultFear),
-  benefits: [''],
-  consequences: [''],
+  benefits: Array(3).fill(''),
+  consequences: Array(3).fill(''),
   acceptable: false
 }
 

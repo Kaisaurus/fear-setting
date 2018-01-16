@@ -27,7 +27,7 @@
     "alert":
       "Please fill in at least 1 item to continue, this doesn't have to be big, it is just part of the exercise to see if there is anything in your control."
   },
-  "benefits": {
+  "benefit": {
     "title": "What are the benefits of an attempt or even a partial success?",
     "alert": "Surely there has to be a benefit to it?"
   },

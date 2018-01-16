@@ -8,38 +8,29 @@ import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setFixes } from '../actions/challengeActions'
 import MultiInputForm from '../components/forms/MultiInputForm'
+import { submitNotEmptyItems } from '../utils/index'
+import { handleAdd } from '../utils/index'
 
 class Fix extends Component {
   static propTypes = {
     fears: PropTypes.array.isRequired,
     translate: PropTypes.func.isRequired
   }
+
   state = {
-    currentFear: 0,
+    currentFear:
+      (this.props.location.state && this.props.location.state.currentFear) || 0,
     fixes: this.props.fears[0].fixes
   }
   componentWillReceiveProps(nextProps) {
     const { currentFear } = this.state
     this.setState({ fixes: nextProps.fears[currentFear].fixes })
   }
-  handleAdd = () => {
-    this.setState(prevState => ({
-      fixes: [...prevState.fixes].concat('')
-    }))
-  }
+  handleAdd = () => handleAdd(this, 'fixes')
   handleChange = fixes => {
     this.props.setFixes(fixes, this.state.currentFear)
   }
-  // submitNotEmptyPreventions = () => {
-  //   const { fears, setFixes } = this.props
-  //   fears.forEach((fear, index) => {
-  //     const notEmptyPreventions = fear.fixes.filter(
-  //       prevention => prevention !== ''
-  //     )
-  //     setFixes(notEmptyPreventions, index)
-  //   })
-  // }
-  handleNext = () => {
+  handleNext = firstInput => {
     const { currentFear } = this.state
     const { fears } = this.props
     if (currentFear < fears.length - 1) {
@@ -47,7 +38,9 @@ class Fix extends Component {
         currentFear: prevState.currentFear + 1,
         fixes: fears[currentFear + 1].fixes
       }))
+      firstInput.focus()
     } else {
+      submitNotEmptyItems(fears, setFixes, 'fixes')
       this.props.history.push('/benefit')
     }
   }
@@ -60,7 +53,7 @@ class Fix extends Component {
         fixes: fears[currentFear - 1].fixes
       }))
     } else {
-      this.props.history.push('/prevent', { currentFear: 2 })
+      this.props.history.push('/prevent', { currentFear: fears.length - 1 })
     }
   }
   render() {
