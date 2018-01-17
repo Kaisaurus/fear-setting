@@ -10,6 +10,7 @@ import MultiInputForm from '../components/forms/MultiInputForm'
 import { handleAdd } from '../utils/index'
 
 class Benefits extends Component {
+  static displayName = 'Benefits'
   static propTypes = {
     benefits: PropTypes.array.isRequired,
     translate: PropTypes.func.isRequired

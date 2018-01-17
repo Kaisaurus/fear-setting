@@ -22,8 +22,8 @@ class Choice extends Component {
   generateFearOverview = (fear, index) => (
     <FearOverview key={index} fear={fear} />
   )
-  generateBenefits = benefit => {
-    return <Subtitle>{benefit}</Subtitle>
+  generateBenefits = (benefit, index) => {
+    return <Subtitle key={index}>{benefit}</Subtitle>
   }
   generateConsequences = () => {
     const { consequences } = this.props.challenge
@@ -41,7 +41,6 @@ class Choice extends Component {
   render() {
     const { challenge, fears, benefits } = this.props.challenge
     const { translate } = this.props
-    console.log(challenge)
     return (
       <PageWrapper>
         <Subtitle>{translate('overview.overview')}</Subtitle>
@@ -58,10 +57,10 @@ class Choice extends Component {
         <Subtitle>{translate('overview.consequences')}</Subtitle>
         {this.generateConsequences()}
         <Title>{translate('choice.title')}</Title>
-        <Button size="huge" yellow>
+        <Button size="huge" color="yellow">
           {translate('choice.yes')}
         </Button>
-        <Button size="huge" olive>
+        <Button size="huge" color="olive">
           {translate('choice.no')}
         </Button>
         <Title>{translate('choice.remind')}</Title>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Header, Form, Button } from 'semantic-ui-react'
+import { Header, Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import AlertTxt from '../AlertTxt'
+import NextBtn from '../NextBtn'
 
 const ChallengeWrapper = styled.div`
   display: flex;
@@ -37,14 +38,16 @@ class DefineForm extends Component {
     this.setState({ challenge: nextProps.challenge })
   }
   handleNext = () => {
-    const { challenge } = this.state
-    this.props.handleUpdate(challenge)
-    this.props.handleNext()
+    this.state.challenge === ''
+      ? this.setState({ showAlert: true })
+      : this.props.handleNext()
   }
   handleChange = event => {
     const challenge = event.target.value
+    challenge !== '' && this.setState({ showAlert: false })
     this.props.handleUpdate(challenge)
   }
+  handleKeyPress = e => e.key === 'Enter' && this.handleNext()
   render() {
     const { challenge, showAlert } = this.state
     const { translate } = this.props
@@ -58,11 +61,12 @@ class DefineForm extends Component {
               placeholder={translate('example.define')}
               value={challenge}
               onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}
             />
           </InputWrapper>
         </ChallengeWrapper>
         {showAlert && <AlertTxt>{translate('define.alert')}</AlertTxt>}
-        <Button onClick={this._handleSubmit}>{translate('button.next')}</Button>
+        <NextBtn onClick={this.handleNext} text={translate('button.next')} />
       </Form>
     )
   }

@@ -10,6 +10,7 @@ import InactionForm from '../components/forms/InactionForm'
 import { handleAdd } from '../utils/index'
 
 class Inaction extends Component {
+  static displayName = 'Inaction'
   static propTypes = {
     consequences: PropTypes.array.isRequired,
     translate: PropTypes.func.isRequired

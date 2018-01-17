@@ -2,13 +2,15 @@
   "empty_challenge": "go back to fill this in",
   "define": {
     "what_if": "What if I",
-    "alert": "Fill in the above to continue!"
+    "alert": "Fill in the above to continue!",
+    "inspired": "inspired by TED talk of Tim Ferris",
+    "how": "How does this work?"
   },
   "fear": {
     "title":
       "Define the worst things you can image happening if you took this step",
     "subtitle":
-      "Fear of the unkown is generally far worse than something specific.",
+      "It's good to put these thoughts into words because fear of the unkown is usually worse than something specific.",
     "alert": "Please fill in at least 1 item to continue"
   },
   "prevent": {

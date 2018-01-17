@@ -9,6 +9,7 @@ import Quote from '../components/Quote'
 import PageWrapper from '../components/PageWrapper'
 
 class Define extends Component {
+  static displayName = 'Define'
   static propTypes = {
     challenge: PropTypes.string.isRequired,
     translate: PropTypes.func.isRequired

@@ -8,10 +8,10 @@ import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setFixes } from '../actions/challengeActions'
 import MultiInputForm from '../components/forms/MultiInputForm'
-import { submitNotEmptyItems } from '../utils/index'
-import { handleAdd } from '../utils/index'
+import { filterEmptyItems, handleAdd } from '../utils/index'
 
 class Fix extends Component {
+  static displayName = 'Fix'
   static propTypes = {
     fears: PropTypes.array.isRequired,
     translate: PropTypes.func.isRequired
@@ -30,7 +30,7 @@ class Fix extends Component {
   handleChange = fixes => {
     this.props.setFixes(fixes, this.state.currentFear)
   }
-  handleNext = firstInput => {
+  handleNext = focusFirstInput => {
     const { currentFear } = this.state
     const { fears } = this.props
     if (currentFear < fears.length - 1) {
@@ -38,9 +38,9 @@ class Fix extends Component {
         currentFear: prevState.currentFear + 1,
         fixes: fears[currentFear + 1].fixes
       }))
-      firstInput.focus()
+      focusFirstInput()
     } else {
-      submitNotEmptyItems(fears, setFixes, 'fixes')
+      setFixes(filterEmptyItems(fears[currentFear].fixes))
       this.props.history.push('/benefit')
     }
   }

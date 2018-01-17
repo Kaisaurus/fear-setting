@@ -22,7 +22,7 @@ export default class FearOverview extends Component {
     return (
       <div>
         {/* <Subtitle>{fear}</Subtitle> */}
-        <Table celled very compact padded>
+        <Table celled compact="very" padded>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell colSpan={2} textAlign="center">

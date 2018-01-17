@@ -40,7 +40,7 @@ export default (state = defaultState, action) => {
       })
       return {
         ...state,
-        fears
+        fears: fears.length < 1 ? [''] : fears
       }
     }
     case types.SET_PREVENTIONS: {

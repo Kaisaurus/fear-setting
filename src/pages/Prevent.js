@@ -7,11 +7,12 @@ import Title from '../components/Title'
 import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setPreventions } from '../actions/challengeActions'
-import { submitNotEmptyItems } from '../utils/index'
+import { filterEmptyItems } from '../utils/index'
 import MultiInputForm from '../components/forms/MultiInputForm'
 import { handleAdd } from '../utils/index'
 
 class Prevent extends Component {
+  static displayName = 'Prevent'
   static propTypes = {
     fears: PropTypes.array.isRequired,
     translate: PropTypes.func.isRequired
@@ -29,7 +30,7 @@ class Prevent extends Component {
   handleChange = preventions => {
     this.props.setPreventions(preventions, this.state.currentFear)
   }
-  handleNext = firstInput => {
+  handleNext = focusFirstInput => {
     const { currentFear } = this.state
     const { fears } = this.props
     if (currentFear < fears.length - 1) {
@@ -37,9 +38,9 @@ class Prevent extends Component {
         currentFear: prevState.currentFear + 1,
         preventions: fears[currentFear + 1].preventions
       }))
-      firstInput.focus()
+      focusFirstInput()
     } else {
-      submitNotEmptyItems(fears, setPreventions, 'preventions')
+      setPreventions(filterEmptyItems(fears[currentFear].preventions))
       this.props.history.push('/fix')
     }
   }

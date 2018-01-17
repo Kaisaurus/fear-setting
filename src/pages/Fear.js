@@ -11,6 +11,7 @@ import Challenge from '../components/overview/Challenge'
 import MultiInputForm from '../components/forms/MultiInputForm'
 
 class Fear extends Component {
+  static displayName = 'Fear'
   static propTypes = {
     fears: PropTypes.array.isRequired,
     challenge: PropTypes.string,
@@ -27,21 +28,21 @@ class Fear extends Component {
   }
   handleChange = fears => this.props.setFears(fears)
   handleRemove = index => this.props.removeFears([index])
-  submitNotEmptyFears = () => {
-    const emptyFears = this.state.fears.reduce((removeList, fear, index) => {
+  navigate = location => {
+    const { fears } = this.state
+    const { history, removeFears } = this.props
+
+    const emptyFears = fears.reduce((removeList, fear, index) => {
       fear === '' && removeList.push(index)
       return removeList
     }, [])
-    this.props.removeFears(emptyFears)
+
+    // if all items are empty it keeps the last item
+    emptyFears.length !== fears.length && removeFears(emptyFears)
+    history.push(location)
   }
-  handleNext = () => {
-    this.submitNotEmptyFears()
-    this.props.history.push('/prevent')
-  }
-  handleBack = () => {
-    this.submitNotEmptyFears()
-    this.props.history.push('/')
-  }
+  handleNext = () => this.navigate('/prevent')
+  handleBack = () => this.navigate('/')
   render() {
     const { fears } = this.state
     const { translate, challenge } = this.props
