@@ -57,12 +57,8 @@ class Choice extends Component {
         <Subtitle>{translate('overview.consequences')}</Subtitle>
         {this.generateConsequences()}
         <Title>{translate('choice.title')}</Title>
-        <Button size="huge" color="yellow">
-          {translate('choice.yes')}
-        </Button>
-        <Button size="huge" color="olive">
-          {translate('choice.no')}
-        </Button>
+        <Button size="huge">{translate('choice.yes')}</Button>
+        <Button size="huge">{translate('choice.no')}</Button>
         <Title>{translate('choice.remind')}</Title>
         <Button size="huge">Send a Reminder</Button>
         <Button size="huge">Save to Account</Button>

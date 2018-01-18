@@ -7,14 +7,12 @@ import Title from '../components/Title'
 import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setFears, removeFears } from '../actions/challengeActions'
-import Challenge from '../components/overview/Challenge'
 import MultiInputForm from '../components/forms/MultiInputForm'
 
 class Fear extends Component {
   static displayName = 'Fear'
   static propTypes = {
     fears: PropTypes.array.isRequired,
-    challenge: PropTypes.string,
     translate: PropTypes.func.isRequired
   }
   state = {
@@ -45,10 +43,9 @@ class Fear extends Component {
   handleBack = () => this.navigate('/')
   render() {
     const { fears } = this.state
-    const { translate, challenge } = this.props
+    const { translate } = this.props
     return (
       <PageWrapper>
-        <Challenge challenge={challenge} translate={translate} />
         <Title>{translate('fear.title')}</Title>
         <Subtitle>{translate('fear.subtitle')}</Subtitle>
         <MultiInputForm
@@ -67,8 +64,7 @@ class Fear extends Component {
 }
 const mapStateToProps = ({ locale, challenge }) => ({
   translate: getTranslate(locale),
-  fears: challenge.fears.map(fear => fear.fear),
-  challenge: challenge.challenge
+  fears: challenge.fears.map(fear => fear.fear)
 })
 
 export default withRouter(

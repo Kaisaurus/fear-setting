@@ -11,13 +11,13 @@ import { initLocalize } from './utils/localization'
 import 'semantic-ui-css/semantic.min.css'
 import { ThemeProvider } from 'styled-components'
 import mainTheme from './themes/mainTheme'
-import WebFont from 'webfontloader'
+// import WebFont from 'webfontloader'
 
-WebFont.load({
-  google: {
-    families: ['Oswald:regular,medium,bold', 'sans-serif']
-  }
-})
+// WebFont.load({
+//   google: {
+//     families: ['Oswald:regular,medium,bold', 'sans-serif']
+//   }
+// })
 
 initLocalize(store)
 

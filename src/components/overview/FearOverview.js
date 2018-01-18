@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Icon } from 'semantic-ui-react'
-// import Subtitle from '../Subtitle'
 
 export default class FearOverview extends Component {
   static propTypes = {
@@ -21,7 +20,6 @@ export default class FearOverview extends Component {
     const { fear } = this.props.fear
     return (
       <div>
-        {/* <Subtitle>{fear}</Subtitle> */}
         <Table celled compact="very" padded>
           <Table.Header>
             <Table.Row>

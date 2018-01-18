@@ -78,6 +78,10 @@ export default (state = defaultState, action) => {
         ...state,
         acceptable: action.payload
       }
+    case types.RESET:
+      return {
+        defaultState
+      }
     default:
       return state
   }
