@@ -15,7 +15,7 @@ class Define extends Component {
     translate: PropTypes.func.isRequired
   }
   handleUpdate = challenge => this.props.setChallenge(challenge)
-  handleNext = () => this.props.history.push('/define')
+  handleNext = () => this.props.history.push('/fear')
   render() {
     const { translate, challenge } = this.props
     return (

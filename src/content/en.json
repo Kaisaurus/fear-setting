@@ -54,7 +54,10 @@
     "yes": "Yes",
     "no": "No",
     "title": "Is inaction acceptable?",
-    "remind": "Remind my future self"
+    "remind": "Remind my future self",
+    "action": "Action",
+    "inaction": "Inaction",
+    "result": "Result"
   },
   "button": {
     "add": "Add",

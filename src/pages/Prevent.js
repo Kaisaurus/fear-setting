@@ -53,7 +53,7 @@ class Prevent extends Component {
         preventions: fears[currentFear - 1].preventions
       }))
     } else {
-      this.props.history.push('/define')
+      this.props.history.push('/fear')
     }
   }
   render() {

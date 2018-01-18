@@ -17,7 +17,7 @@ class Choice extends Component {
     translate: PropTypes.func.isRequired
   }
   state = {
-    choice: true
+    choice: ''
   }
   generateFearOverview = (fear, index) => (
     <FearOverview key={index} fear={fear} />
@@ -38,9 +38,11 @@ class Choice extends Component {
       </div>
     )
   }
+  setChoice = choice => () => this.setState({ choice })
   render() {
     const { challenge, fears, benefits } = this.props.challenge
     const { translate } = this.props
+    const { choice } = this.state
     return (
       <PageWrapper>
         <Subtitle>{translate('overview.overview')}</Subtitle>
@@ -57,8 +59,19 @@ class Choice extends Component {
         <Subtitle>{translate('overview.consequences')}</Subtitle>
         {this.generateConsequences()}
         <Title>{translate('choice.title')}</Title>
-        <Button size="huge">{translate('choice.yes')}</Button>
-        <Button size="huge">{translate('choice.no')}</Button>
+        <Button
+          size="huge"
+          onClick={this.setChoice(translate('choice.inaction'))}
+        >
+          {translate('choice.yes')}
+        </Button>
+        <Button
+          size="huge"
+          onClick={this.setChoice(translate('choice.action'))}
+        >
+          {translate('choice.no')}
+        </Button>
+        {choice !== '' && <Title>Result: {choice}</Title>}
         <Title>{translate('choice.remind')}</Title>
         <Button size="huge">Send a Reminder</Button>
         <Button size="huge">Save to Account</Button>

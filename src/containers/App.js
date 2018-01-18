@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/" component={Define} />
-        <Route exact path="/define" component={Fear} />
+        <Route exact path="/fear" component={Fear} />
         <Route exact path="/prevent" component={Prevent} />
         <Route exact path="/fix" component={Fix} />
         <Route exact path="/benefit" component={Benefit} />
