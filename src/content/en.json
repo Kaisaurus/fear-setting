@@ -1,5 +1,10 @@
 {
   "empty_challenge": "go back to fill this in",
+  "logo": {
+    "fear-setting": "FEAR-SETTING",
+    "inspired_by": "inspired by",
+    "tims_talk": "Tim Ferris' TED Talk"
+  },
   "define": {
     "what_if": "What if I",
     "alert": "Fill in the above to continue!",
@@ -8,7 +13,7 @@
   },
   "fear": {
     "title":
-      "Define the worst things you can image happening if you took this step",
+      "Name the worst things you can image happening if you took this step",
     "subtitle":
       "It's good to put these thoughts into words because fear of the unkown is usually worse than something specific.",
     "alert": "Please fill in at least 1 item to continue"
@@ -25,7 +30,7 @@
     "title":
       "If this happens, what can I do to fix this? Who could I ask for help?",
     "subtitle":
-      "Ask yourself has anyone less driven or less clever ever got them selves out of this situation? Probably yes, how would they have done it?",
+      "Ask yourself has anyone with your capabilities ever got them selves out of this situation? Probably yes, how would they have done it?",
     "alert":
       "Please fill in at least 1 item to continue, this doesn't have to be big, it is just part of the exercise to see if there is anything in your control."
   },

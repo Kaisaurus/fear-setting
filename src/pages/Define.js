@@ -5,8 +5,8 @@ import { getTranslate } from 'react-localize-redux'
 import PropTypes from 'prop-types'
 import { setChallenge } from '../actions/challengeActions'
 import DefineForm from '../components/forms/DefineForm'
-import Quote from '../components/Quote'
 import PageWrapper from '../components/PageWrapper'
+import Logo from '../components/Logo'
 
 class Define extends Component {
   static displayName = 'Define'
@@ -20,7 +20,8 @@ class Define extends Component {
     const { translate, challenge } = this.props
     return (
       <PageWrapper>
-        <Quote translate={translate} id="1" />
+        <Logo translate={translate} />
+        <p>How does this work?</p>
         <DefineForm
           challenge={challenge}
           translate={translate}

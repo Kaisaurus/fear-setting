@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import AlertTxt from '../AlertTxt'
 import NextBtn from '../NextBtn'
+import Title from '../Title'
 
 const ChallengeWrapper = styled.div`
   display: flex;
@@ -11,6 +12,14 @@ const ChallengeWrapper = styled.div`
 `
 const InputWrapper = styled.div`
   flex: 1 0 auto;
+`
+const TitleFooter = styled.p`
+  line-height: 0.5em;
+`
+const TitleWithFooter = styled(Header)`
+  && {
+    margin: 0;
+  }
 `
 // const DefineInput = styled.input`
 //   border-top: 0 none;
@@ -54,7 +63,7 @@ class DefineForm extends Component {
     return (
       <Form onSubmit={this.handleNext}>
         <ChallengeWrapper>
-          <Header as="h1">{translate('define.what_if')}</Header>
+          <Title>{translate('define.what_if')}</Title>
           <InputWrapper>
             <input
               ref={input => (this.defineInput = input)}
@@ -63,6 +72,14 @@ class DefineForm extends Component {
               onChange={this.handleChange}
               onKeyPress={this.handleKeyPress}
             />
+            {/* <textarea
+              rows="2"
+              ref={input => (this.defineInput = input)}
+              placeholder={translate('example.define')}
+              value={challenge}
+              onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}
+            /> */}
           </InputWrapper>
         </ChallengeWrapper>
         {showAlert && <AlertTxt>{translate('define.alert')}</AlertTxt>}

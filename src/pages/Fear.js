@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom'
 import { getTranslate } from 'react-localize-redux'
 import PropTypes from 'prop-types'
 import Title from '../components/Title'
-import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import { setFears, removeFears } from '../actions/challengeActions'
 import MultiInputForm from '../components/forms/MultiInputForm'
+import Quote from '../components/Quote'
 
 class Fear extends Component {
   static displayName = 'Fear'
@@ -47,7 +47,7 @@ class Fear extends Component {
     return (
       <PageWrapper>
         <Title>{translate('fear.title')}</Title>
-        <Subtitle>{translate('fear.subtitle')}</Subtitle>
+        <Quote translate={translate} id="1" />
         <MultiInputForm
           items={fears}
           translateItem={'fear'}
