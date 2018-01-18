@@ -50,6 +50,7 @@ class MultiInputForm extends Component {
       : this.setState({ showAlert: true })
   }
   handleKeyPress = e => {
+    e.key === 'Enter' && console.log('boo')
     e.key === 'Enter' && this.handleNext()
   }
   handleChange = index => event => {
