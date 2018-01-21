@@ -7,6 +7,7 @@ import { setChallenge } from '../actions/challengeActions'
 import DefineForm from '../components/forms/DefineForm'
 import PageWrapper from '../components/PageWrapper'
 import Logo from '../components/Logo'
+import EmailSignup from '../components/EmailSignup'
 
 class Define extends Component {
   static displayName = 'Define'
@@ -28,6 +29,7 @@ class Define extends Component {
           handleUpdate={this.handleUpdate}
           handleNext={this.handleNext}
         />
+        <EmailSignup />
       </PageWrapper>
     )
   }

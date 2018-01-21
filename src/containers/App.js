@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Route } from 'react-router-dom'
+import Analytics from '../utils/Analytics'
 import Define from '../pages/Define'
 import Fear from '../pages/Fear'
 import Prevent from '../pages/Prevent'
@@ -13,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Route path="/" component={Analytics} />
         <Route exact path="/" component={Define} />
         <Route exact path="/fear" component={Fear} />
         <Route exact path="/prevent" component={Prevent} />

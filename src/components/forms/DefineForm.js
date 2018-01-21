@@ -13,14 +13,6 @@ const ChallengeWrapper = styled.div`
 const InputWrapper = styled.div`
   flex: 1 0 auto;
 `
-const TitleFooter = styled.p`
-  line-height: 0.5em;
-`
-const TitleWithFooter = styled(Header)`
-  && {
-    margin: 0;
-  }
-`
 // const DefineInput = styled.input`
 //   border-top: 0 none;
 //   border-right: 0 none;
