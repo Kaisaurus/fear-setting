@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { Form, Input } from 'semantic-ui-react'
+// import PropTypes from 'prop-types'
 
 const encode = data => {
   return Object.keys(data)
@@ -8,9 +9,9 @@ const encode = data => {
 }
 
 export default class EmailSignup extends Component {
-  static propTypes = {
-    // prop: PropTypes
-  }
+  // static propTypes = {
+  // prop: PropTypes
+  // }
 
   state = {
     email: ''
@@ -20,7 +21,7 @@ export default class EmailSignup extends Component {
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', ...this.state })
+      body: encode({ 'form-name': 'mailing', ...this.state })
     })
       .then(() => alert('Success!'))
       .catch(error => alert(error))
@@ -33,27 +34,23 @@ export default class EmailSignup extends Component {
   render() {
     const { email } = this.state
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <p>
-          This is still a work in progress, if you're interested in the end
-          result leave you email adress and I'll let you know when I've made it
-          into a presentable product!
+          Leave me your email and I'll send an update when the project is up and
+          running!
         </p>
-        <p>
-          <label>
-            Email:{' '}
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
-      </form>
+        <Form.Group>
+          {/* <label>email</label> */}
+          <Input
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+            placeholder="Email address"
+          />
+          <Form.Button type="submit" content="Sign Up" />
+        </Form.Group>
+      </Form>
     )
   }
 }
