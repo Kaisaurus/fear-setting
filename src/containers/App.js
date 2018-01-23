@@ -9,11 +9,13 @@ import Fix from '../pages/Fix'
 import Benefit from '../pages/Benefit'
 import Inaction from '../pages/Inaction'
 import Choice from '../pages/Choice'
+import RoughDesign from '../pages/RoughDesign'
+import InitialSurvey from '../components/InitialSurvey'
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Route path="/" component={Analytics} />
         <Route exact path="/" component={Define} />
         <Route exact path="/fear" component={Fear} />
@@ -22,7 +24,9 @@ class App extends Component {
         <Route exact path="/benefit" component={Benefit} />
         <Route exact path="/inaction" component={Inaction} />
         <Route exact path="/choice" component={Choice} />
-      </div>
+        <Route exact path="/rough-design" component={RoughDesign} />
+        <Route exact path="/survey" component={InitialSurvey} />
+      </React.Fragment>
     )
   }
 }

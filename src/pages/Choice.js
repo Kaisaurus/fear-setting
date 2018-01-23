@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getTranslate } from 'react-localize-redux'
 import PropTypes from 'prop-types'
-import { Icon, Button } from 'semantic-ui-react'
+import { Icon, Button, Divider } from 'semantic-ui-react'
 import Title from '../components/Title'
 import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
+import InitialSurvey from '../components/InitialSurvey'
 import { setAcceptable } from '../actions/challengeActions'
 import FearOverview from '../components/overview/FearOverview'
 
@@ -56,7 +57,10 @@ class Choice extends Component {
           {translate('overview.benefits')}
         </Subtitle>
         {benefits.map(this.generateBenefits)}
-        <Subtitle>{translate('overview.consequences')}</Subtitle>
+        <Subtitle>
+          <Icon name="wait" />
+          {translate('overview.consequences')}
+        </Subtitle>
         {this.generateConsequences()}
         <Title>{translate('choice.title')}</Title>
         <Button
@@ -71,10 +75,22 @@ class Choice extends Component {
         >
           {translate('choice.no')}
         </Button>
-        {choice !== '' && <Title>Result: {choice}</Title>}
+        {choice !== '' && (
+          <Title>
+            Result: {choice}
+            {choice === translate('choice.inaction') && <Icon name="send" />}
+            {choice === translate('choice.action') && <Icon name="rocket" />}
+          </Title>
+        )}
         <Title>{translate('choice.remind')}</Title>
-        <Button size="huge">Send a Reminder</Button>
-        <Button size="huge">Save to Account</Button>
+        <Button size="huge" disabled>
+          Send a Reminder
+        </Button>
+        <Button size="huge" disabled>
+          Save to Account
+        </Button>
+        <Divider />
+        <InitialSurvey />
       </PageWrapper>
     )
   }

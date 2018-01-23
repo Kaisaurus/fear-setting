@@ -7,7 +7,8 @@ import { setChallenge } from '../actions/challengeActions'
 import DefineForm from '../components/forms/DefineForm'
 import PageWrapper from '../components/PageWrapper'
 import Logo from '../components/Logo'
-import EmailSignup from '../components/EmailSignup'
+// import Subtitle from '../components/Subtitle'
+import EmailSignupForm from '../components/forms/EmailSignupForm'
 
 class Define extends Component {
   static displayName = 'Define'
@@ -22,14 +23,18 @@ class Define extends Component {
     return (
       <PageWrapper>
         <Logo translate={translate} />
-        <p>How does this work?</p>
+        {/* <Subtitle>Do you have something you've been contemplating on?</Subtitle>
+        <p>
+          This step-by-step thought exercise will help you put your thoughts in
+          words and come to a decisison.
+        </p> */}
         <DefineForm
           challenge={challenge}
           translate={translate}
           handleUpdate={this.handleUpdate}
           handleNext={this.handleNext}
         />
-        <EmailSignup />
+        <EmailSignupForm />
       </PageWrapper>
     )
   }

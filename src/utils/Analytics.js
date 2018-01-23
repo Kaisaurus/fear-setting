@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import ReactGA from 'react-ga'
 ReactGA.initialize('UA-112741797-1')
 

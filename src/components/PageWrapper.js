@@ -4,8 +4,9 @@ import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 const PageContainer = styled(Container)`
-  margin: 4em;import PageWrapper from '../components/PageWrapper'
-
+  height: 100%;
+  display: flex;
+  padding-top: 1em;
 `
 
 const PageWrapper = props => {
