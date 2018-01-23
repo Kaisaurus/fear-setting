@@ -6,7 +6,6 @@ import styled from 'styled-components'
 const PageContainer = styled(Container)`
   height: 100%;
   display: flex;
-  padding-top: 1em;
 `
 
 const PageWrapper = props => {

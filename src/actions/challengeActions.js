@@ -43,8 +43,8 @@ export function setAcceptable(acceptable) {
     dispatch({ type: types.SET_ACCEPTABLE, payload: acceptable })
   }
 }
-export function reset() {
+export function resetForm() {
   return dispatch => {
-    dispatch({ type: types.RESET })
+    dispatch({ type: types.RESET_FORM })
   }
 }

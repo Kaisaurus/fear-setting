@@ -8,8 +8,11 @@ import Title from '../components/Title'
 import Subtitle from '../components/Subtitle'
 import PageWrapper from '../components/PageWrapper'
 import InitialSurvey from '../components/InitialSurvey'
-import { setAcceptable } from '../actions/challengeActions'
+import BackBtn from '../components/BackBtn'
+import ClearBtn from '../components/ClearBtn'
+import { setAcceptable, resetForm } from '../actions/challengeActions'
 import FearOverview from '../components/overview/FearOverview'
+import paths from '../utils/paths'
 
 class Choice extends Component {
   static displayName = 'Choice'
@@ -40,17 +43,23 @@ class Choice extends Component {
     )
   }
   setChoice = choice => () => this.setState({ choice })
+  handleBack = () => this.props.history.push(paths.inaction)
+  onClear = () => this.props.resetForm()
   render() {
     const { challenge, fears, benefits } = this.props.challenge
-    const { translate } = this.props
+    const { translate, resetForm } = this.props
     const { choice } = this.state
     return (
       <PageWrapper>
+        <BackBtn onClick={this.handleBack} translate={translate} />
         <Subtitle>{translate('overview.overview')}</Subtitle>
         <Title>
           {translate('define.what_if')} {challenge}?
         </Title>
-        <Subtitle>{translate('overview.fears')}</Subtitle>
+        <Subtitle>
+          <Icon name="lightning" />
+          {translate('overview.fears')}
+        </Subtitle>
         {fears.map(this.generateFearOverview)}
         <Subtitle>
           <Icon name="wizard" />
@@ -82,11 +91,15 @@ class Choice extends Component {
             {choice === translate('choice.action') && <Icon name="rocket" />}
           </Title>
         )}
-        <Title>{translate('choice.remind')}</Title>
-        <Button size="huge" disabled>
+
+        <Subtitle>{translate('choice.remind')}</Subtitle>
+        {challenge === '' && (
+          <ClearBtn translate={translate} onClick={resetForm} />
+        )}
+        <Button size="large" disabled>
           Send a Reminder
         </Button>
-        <Button size="huge" disabled>
+        <Button size="large" disabled>
           Save to Account
         </Button>
         <Divider />
@@ -100,4 +113,6 @@ const mapStateToProps = ({ locale, challenge }) => ({
   challenge
 })
 
-export default withRouter(connect(mapStateToProps, { setAcceptable })(Choice))
+export default withRouter(
+  connect(mapStateToProps, { setAcceptable, resetForm })(Choice)
+)

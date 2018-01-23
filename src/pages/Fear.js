@@ -2,17 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getTranslate } from 'react-localize-redux'
+import { Icon } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import Title from '../components/Title'
 import PageWrapper from '../components/PageWrapper'
 import { setFears, removeFears } from '../actions/challengeActions'
 import MultiInputForm from '../components/forms/MultiInputForm'
 import Quote from '../components/Quote'
+import Subtitle from '../components/Subtitle'
+import paths from '../utils/paths'
 
 class Fear extends Component {
   static displayName = 'Fear'
   static propTypes = {
     fears: PropTypes.array.isRequired,
+    challenge: PropTypes.string,
     translate: PropTypes.func.isRequired
   }
   state = {
@@ -39,15 +43,18 @@ class Fear extends Component {
     emptyFears.length !== fears.length && removeFears(emptyFears)
     history.push(location)
   }
-  handleNext = () => this.navigate('/prevent')
-  handleBack = () => this.navigate('/')
+  handleNext = () => this.navigate(paths.prevent)
+  handleBack = () => this.navigate(paths.root)
   render() {
     const { fears } = this.state
-    const { translate } = this.props
+    const { translate, challenge } = this.props
     return (
       <PageWrapper>
-        <Title>{translate('fear.title')}</Title>
-        <Quote translate={translate} id="1" />
+        <Title>
+          <Icon name="lightning" />
+          {translate('fear.title')}
+        </Title>
+        <Subtitle>{challenge}</Subtitle>
         <MultiInputForm
           items={fears}
           translateItem={'fear'}
@@ -58,13 +65,15 @@ class Fear extends Component {
           handleBack={this.handleBack}
           handleAdd={this.handleAdd}
         />
+        <Quote translate={translate} id="1" />
       </PageWrapper>
     )
   }
 }
 const mapStateToProps = ({ locale, challenge }) => ({
   translate: getTranslate(locale),
-  fears: challenge.fears.map(fear => fear.fear)
+  fears: challenge.fears.map(fear => fear.fear),
+  challenge: challenge.challenge
 })
 
 export default withRouter(

@@ -24,7 +24,6 @@ export default class FearOverview extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell colSpan={2} textAlign="center">
-                <Icon name="lightning" />
                 {fear}
               </Table.HeaderCell>
             </Table.Row>
@@ -32,9 +31,11 @@ export default class FearOverview extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell width={8} textAlign="center">
+                <Icon name="treatment" />
                 Preventions
               </Table.HeaderCell>
               <Table.HeaderCell width={8} textAlign="center">
+                <Icon name="fire extinguisher" />
                 Fixes
               </Table.HeaderCell>
             </Table.Row>

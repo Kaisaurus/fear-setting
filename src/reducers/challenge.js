@@ -78,9 +78,9 @@ export default (state = defaultState, action) => {
         ...state,
         acceptable: action.payload
       }
-    case types.RESET:
+    case types.RESET_FORM:
       return {
-        defaultState
+        ...defaultState
       }
     default:
       return state

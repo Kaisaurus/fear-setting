@@ -49,10 +49,7 @@ class MultiInputForm extends Component {
       ? this.props.handleNext(this.focusFirstInput)
       : this.setState({ showAlert: true })
   }
-  handleKeyPress = e => {
-    e.key === 'Enter' && console.log('boo')
-    e.key === 'Enter' && this.handleNext()
-  }
+  handleKeyPress = e => e.key === 'Enter' && this.handleNext()
   handleChange = index => event => {
     if (this.isItemsNotEmpty()) this.setState({ showAlert: false })
     const newItems = [...this.state.items]
@@ -96,8 +93,8 @@ class MultiInputForm extends Component {
           <Icon name="plus" />
           {translate('button.add')}
         </Button>
-        <BackBtn onClick={handleBack} text={translate('button.back')} />
-        <NextBtn onClick={this.handleNext} text={translate('button.next')} />
+        <BackBtn onClick={handleBack} translate={translate} />
+        <NextBtn onClick={this.handleNext} translate={translate} />
       </Form>
     )
   }

@@ -68,14 +68,15 @@
     "add": "Add",
     "next": "Next",
     "back": "Back",
-    "remove": "Remove"
+    "remove": "Remove",
+    "clear": "Clear all form data"
   },
   "example": {
     "define": "Example: Try to make a web app that helps make big decisions",
     "fear_1": "Example: It will take forever to complete it",
-    "fear_2": "Example: No one will use it",
-    "fear_3":
+    "fear_2":
       "Example: I won't be able to complete it because of a technical hurdle",
+    "fear_3": "Example: No one will use it",
     "prevent_1": "Example: focus on only core functionality",
     "prevent_2":
       "Example: give development of this project high priority until I complete the core functionality",

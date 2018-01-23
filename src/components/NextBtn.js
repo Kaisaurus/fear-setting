@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Icon } from 'semantic-ui-react'
 
-export default function NextBtn({ onClick, text }) {
+export default function NextBtn({ onClick, translate }) {
   return (
     <Button onClick={onClick} type="button">
-      {text}
+      {translate('button.next')}
       <Icon name="arrow right" />
     </Button>
   )
@@ -13,5 +13,5 @@ export default function NextBtn({ onClick, text }) {
 
 NextBtn.propTypes = {
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.string
+  translate: PropTypes.func.isRequired
 }

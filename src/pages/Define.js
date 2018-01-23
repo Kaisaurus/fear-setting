@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getTranslate } from 'react-localize-redux'
 import PropTypes from 'prop-types'
-import { setChallenge } from '../actions/challengeActions'
+import { Divider } from 'semantic-ui-react'
+import { setChallenge, resetForm } from '../actions/challengeActions'
 import DefineForm from '../components/forms/DefineForm'
 import PageWrapper from '../components/PageWrapper'
-import Logo from '../components/Logo'
-// import Subtitle from '../components/Subtitle'
+import Intro from '../components/Intro'
 import EmailSignupForm from '../components/forms/EmailSignupForm'
+import paths from '../utils/paths'
 
 class Define extends Component {
   static displayName = 'Define'
@@ -17,23 +18,21 @@ class Define extends Component {
     translate: PropTypes.func.isRequired
   }
   handleUpdate = challenge => this.props.setChallenge(challenge)
-  handleNext = () => this.props.history.push('/fear')
+  handleNext = () => this.props.history.push(paths.fear)
   render() {
-    const { translate, challenge } = this.props
+    const { translate, challenge, resetForm } = this.props
     return (
       <PageWrapper>
-        <Logo translate={translate} />
-        {/* <Subtitle>Do you have something you've been contemplating on?</Subtitle>
-        <p>
-          This step-by-step thought exercise will help you put your thoughts in
-          words and come to a decisison.
-        </p> */}
         <DefineForm
           challenge={challenge}
           translate={translate}
           handleUpdate={this.handleUpdate}
           handleNext={this.handleNext}
+          handleReset={resetForm}
         />
+        <Divider />
+        <Intro translate={translate} />
+        <Divider />
         <EmailSignupForm />
       </PageWrapper>
     )
@@ -43,4 +42,6 @@ const mapStateToProps = ({ locale, challenge }) => ({
   translate: getTranslate(locale),
   challenge: challenge.challenge
 })
-export default withRouter(connect(mapStateToProps, { setChallenge })(Define))
+export default withRouter(
+  connect(mapStateToProps, { setChallenge, resetForm })(Define)
+)

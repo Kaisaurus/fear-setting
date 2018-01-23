@@ -22,4 +22,4 @@ const middleware = composeEnhancers(
 export const store = createStore(reducer, undefined, middleware)
 
 export const persistor = persistStore(store)
-persistor.purge() // purge store for testing
+// persistor.purge() // purge store for testing

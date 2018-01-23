@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, Button } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import styled from 'styled-components'
 import AlertTxt from '../AlertTxt'
 import Subtitle from '../Subtitle'
+import BackBtn from '../BackBtn'
+import NextBtn from '../NextBtn'
 
 const InputWrapper = styled.div`
   flex: 1 0 auto;
@@ -50,6 +52,7 @@ class InactionForm extends Component {
     newItems[index] = event.target.value
     handleChange(newItems)
   }
+  handleKeyPress = e => e.key === 'Enter' && this.handleNext()
   render() {
     const { translate, handleBack } = this.props
     const { items, showAlert } = this.state
@@ -62,29 +65,35 @@ class InactionForm extends Component {
               innerRef={input => (this.firstInput = input)}
               value={items[0]}
               onChange={this.handleChange(0)}
+              onKeyPress={this.handleKeyPress}
             />
           </InputWrapper>
         </FormField>
         <Subtitle>{translate('inaction.1_year')}</Subtitle>
         <FormField>
           <InputWrapper>
-            <CenterInput value={items[1]} onChange={this.handleChange(1)} />
+            <CenterInput
+              onKeyPress={this.handleKeyPress}
+              value={items[1]}
+              onChange={this.handleChange(1)}
+            />
           </InputWrapper>
         </FormField>
         <Subtitle>{translate('inaction.3_years')}</Subtitle>
         <FormField>
           <InputWrapper>
-            <CenterInput value={items[2]} onChange={this.handleChange(2)} />
+            <CenterInput
+              onKeyPress={this.handleKeyPress}
+              value={items[2]}
+              onChange={this.handleChange(2)}
+            />
           </InputWrapper>
         </FormField>
 
         {showAlert && <AlertTxt>{translate(`inaction.alert`)}</AlertTxt>}
-        <Button type="button" onClick={handleBack}>
-          {translate('button.back')}
-        </Button>
-        <Button type="submit" onClick={this.handleNext}>
-          {translate('button.next')}
-        </Button>
+
+        <BackBtn onClick={handleBack} translate={translate} />
+        <NextBtn onClick={this.handleNext} translate={translate} />
       </Form>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Input, Icon } from 'semantic-ui-react'
 import styled from 'styled-components'
 // import PropTypes from 'prop-types'
 
@@ -42,11 +42,16 @@ export default class EmailSignup extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <p>
-          Leave me your email and I'll send an update when the project is up and
-          running!
+          <Icon name="warning sign" />
+          This is still early work in progress, sign to get a update when its
+          done! <br />(or fill in the survey at the end of the questionaire)
         </p>
+
         {success ? (
-          <p>Sign up has been successful! Ill send you a update to {email}</p>
+          <p>
+            <Icon name="send outline" />Sign up has been successful! Ill send
+            you a update to {email}
+          </p>
         ) : (
           <CenteredFormGroup>
             {/* <label>email</label> */}

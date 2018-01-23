@@ -8,6 +8,8 @@ import PageWrapper from '../components/PageWrapper'
 import { setConsequences } from '../actions/challengeActions'
 import InactionForm from '../components/forms/InactionForm'
 import { handleAdd } from '../utils/index'
+import paths from '../utils/paths'
+import { Icon } from 'semantic-ui-react'
 
 class Inaction extends Component {
   static displayName = 'Inaction'
@@ -23,14 +25,17 @@ class Inaction extends Component {
   }
   handleAdd = () => handleAdd(this, 'consequences')
   handleChange = consequences => this.props.setConsequences(consequences)
-  handleNext = () => this.props.history.push('/choice')
-  handleBack = () => this.props.history.push('/benefits')
+  handleNext = () => this.props.history.push(paths.choice)
+  handleBack = () => this.props.history.push(paths.benefit)
   render() {
     const { consequences } = this.state
     const { translate } = this.props
     return (
       <PageWrapper>
-        <Title>{translate('inaction.title')}</Title>
+        <Title>
+          <Icon name="wait" />
+          {translate('inaction.title')}
+        </Title>
         <InactionForm
           items={consequences}
           translateItem={'inaction'}

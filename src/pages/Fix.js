@@ -9,6 +9,8 @@ import PageWrapper from '../components/PageWrapper'
 import { setFixes } from '../actions/challengeActions'
 import MultiInputForm from '../components/forms/MultiInputForm'
 import { filterEmptyItems, handleAdd } from '../utils/index'
+import paths from '../utils/paths'
+import { Icon } from 'semantic-ui-react'
 
 class Fix extends Component {
   static displayName = 'Fix'
@@ -41,7 +43,7 @@ class Fix extends Component {
       focusFirstInput()
     } else {
       setFixes(filterEmptyItems(fears[currentFear].fixes))
-      this.props.history.push('/benefit')
+      this.props.history.push(paths.benefit)
     }
   }
   handleBack = () => {
@@ -53,7 +55,7 @@ class Fix extends Component {
         fixes: fears[currentFear - 1].fixes
       }))
     } else {
-      this.props.history.push('/prevent', { currentFear: fears.length - 1 })
+      this.props.history.push(paths.prevent, { currentFear: fears.length - 1 })
     }
   }
   render() {
@@ -61,8 +63,10 @@ class Fix extends Component {
     const { translate, fears } = this.props
     return (
       <PageWrapper>
-        <Title>{translate('fix.title')}</Title>
-        <Subtitle>{translate('fix.subtitle')}</Subtitle>
+        <Title>
+          <Icon name="fire extinguisher" />
+          {translate('fix.title')}
+        </Title>
         <Subtitle>{fears[currentFear].fear}</Subtitle>
         <Subtitle>
           {currentFear + 1} / {fears.length}
@@ -76,6 +80,7 @@ class Fix extends Component {
           handleBack={this.handleBack}
           handleAdd={this.handleAdd}
         />
+        <Subtitle>{translate('fix.subtitle')}</Subtitle>
       </PageWrapper>
     )
   }

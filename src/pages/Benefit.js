@@ -8,6 +8,8 @@ import PageWrapper from '../components/PageWrapper'
 import { setBenefits } from '../actions/challengeActions'
 import MultiInputForm from '../components/forms/MultiInputForm'
 import { handleAdd } from '../utils/index'
+import paths from '../utils/paths'
+import { Icon } from 'semantic-ui-react'
 
 class Benefits extends Component {
   static displayName = 'Benefits'
@@ -23,17 +25,20 @@ class Benefits extends Component {
   }
   handleAdd = () => handleAdd(this, 'benefits')
   handleChange = benefits => this.props.setBenefits(benefits)
-  handleNext = () => this.props.history.push('/inaction')
+  handleNext = () => this.props.history.push(paths.inaction)
   handleBack = () => {
     const { fears } = this.props
-    this.props.history.push('/fix', { currentFear: fears.length - 1 })
+    this.props.history.push(paths.fix, { currentFear: fears.length - 1 })
   }
   render() {
     const { benefits } = this.state
     const { translate } = this.props
     return (
       <PageWrapper>
-        <Title>{translate('benefit.title')}</Title>
+        <Title>
+          <Icon name="wizard" />
+          {translate('benefit.title')}
+        </Title>
         <MultiInputForm
           items={benefits}
           translateItem={'benefit'}

@@ -1,7 +1,8 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { Header } from 'semantic-ui-react'
 import styled from 'styled-components'
+import { localize } from 'react-localize-redux'
 
 const LogoTitle = styled(Header)`
   &&& {
@@ -16,11 +17,12 @@ const LogoSubtitle = styled.p`
 const LogoWrapper = styled.div`
   margin-bottom: 3em;
 `
-
-export default function Logo({ translate }) {
+function Logo({ translate }) {
   return (
     <LogoWrapper>
-      <LogoTitle as="h1">{translate('logo.fear-setting')}</LogoTitle>
+      <a href="/">
+        <LogoTitle as="h1">{translate('logo.fear-setting')}</LogoTitle>
+      </a>
       <LogoSubtitle>
         {translate('logo.inspired_by')}{' '}
         <a href="https://youtu.be/5J6jAC6XxAI">{translate('logo.tims_talk')}</a>
@@ -28,5 +30,7 @@ export default function Logo({ translate }) {
     </LogoWrapper>
   )
 }
-
-Logo.propTypes = {}
+Logo.propTypes = {
+  translate: PropTypes.func.isRequired
+}
+export default localize(Logo, 'locale')

@@ -10,6 +10,8 @@ import { setPreventions } from '../actions/challengeActions'
 import { filterEmptyItems } from '../utils/index'
 import MultiInputForm from '../components/forms/MultiInputForm'
 import { handleAdd } from '../utils/index'
+import paths from '../utils/paths'
+import { Icon } from 'semantic-ui-react'
 
 class Prevent extends Component {
   static displayName = 'Prevent'
@@ -41,7 +43,7 @@ class Prevent extends Component {
       focusFirstInput()
     } else {
       setPreventions(filterEmptyItems(fears[currentFear].preventions))
-      this.props.history.push('/fix')
+      this.props.history.push(paths.fix)
     }
   }
   handleBack = () => {
@@ -53,7 +55,7 @@ class Prevent extends Component {
         preventions: fears[currentFear - 1].preventions
       }))
     } else {
-      this.props.history.push('/fear')
+      this.props.history.push(paths.fear)
     }
   }
   render() {
@@ -61,8 +63,11 @@ class Prevent extends Component {
     const { translate, fears } = this.props
     return (
       <PageWrapper>
-        <Title>{translate('prevent.title')}</Title>
-        <Subtitle>{translate('prevent.subtitle')}</Subtitle>
+        <Title>
+          <Icon name="treatment" />
+          {translate('prevent.title')}
+        </Title>
+
         <Subtitle>{fears[currentFear].fear}</Subtitle>
         <Subtitle>
           {currentFear + 1} / {fears.length}
@@ -76,6 +81,7 @@ class Prevent extends Component {
           handleBack={this.handleBack}
           handleAdd={this.handleAdd}
         />
+        <Subtitle>{translate('prevent.subtitle')}</Subtitle>
       </PageWrapper>
     )
   }

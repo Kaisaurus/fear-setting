@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import AlertTxt from '../AlertTxt'
 import NextBtn from '../NextBtn'
+import ClearBtn from '../ClearBtn'
 import Title from '../Title'
 
 const ChallengeWrapper = styled.div`
@@ -26,7 +27,8 @@ class DefineForm extends Component {
     challenge: PropTypes.string.isRequired,
     handleUpdate: PropTypes.func.isRequired,
     handleNext: PropTypes.func.isRequired,
-    translate: PropTypes.func.isRequired
+    translate: PropTypes.func.isRequired,
+    handleReset: PropTypes.func.isRequired
   }
   state = {
     challenge: this.props.challenge,
@@ -51,7 +53,7 @@ class DefineForm extends Component {
   handleKeyPress = e => e.key === 'Enter' && this.handleNext()
   render() {
     const { challenge, showAlert } = this.state
-    const { translate } = this.props
+    const { translate, handleReset } = this.props
     return (
       <Form onSubmit={this.handleNext}>
         <ChallengeWrapper>
@@ -75,7 +77,10 @@ class DefineForm extends Component {
           </InputWrapper>
         </ChallengeWrapper>
         {showAlert && <AlertTxt>{translate('define.alert')}</AlertTxt>}
-        <NextBtn onClick={this.handleNext} text={translate('button.next')} />
+        {challenge !== '' && (
+          <ClearBtn translate={translate} onClick={handleReset} />
+        )}
+        <NextBtn onClick={this.handleNext} translate={translate} />
       </Form>
     )
   }

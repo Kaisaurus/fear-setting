@@ -11,21 +11,27 @@ import Inaction from '../pages/Inaction'
 import Choice from '../pages/Choice'
 import RoughDesign from '../pages/RoughDesign'
 import InitialSurvey from '../components/InitialSurvey'
+import Logo from '../components/Logo'
+import PageWrapper from '../components/PageWrapper'
+import paths from '../utils/paths'
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Route path="/" component={Analytics} />
-        <Route exact path="/" component={Define} />
-        <Route exact path="/fear" component={Fear} />
-        <Route exact path="/prevent" component={Prevent} />
-        <Route exact path="/fix" component={Fix} />
-        <Route exact path="/benefit" component={Benefit} />
-        <Route exact path="/inaction" component={Inaction} />
-        <Route exact path="/choice" component={Choice} />
-        <Route exact path="/rough-design" component={RoughDesign} />
-        <Route exact path="/survey" component={InitialSurvey} />
+        <PageWrapper>
+          <Route path={paths.root} component={Logo} />
+          <Route path={paths.root} component={Analytics} />
+          <Route exact path={paths.root} component={Define} />
+          <Route exact path={paths.fear} component={Fear} />
+          <Route exact path={paths.prevent} component={Prevent} />
+          <Route exact path={paths.fix} component={Fix} />
+          <Route exact path={paths.benefit} component={Benefit} />
+          <Route exact path={paths.inaction} component={Inaction} />
+          <Route exact path={paths.choice} component={Choice} />
+          <Route exact path={paths.design} component={RoughDesign} />
+          <Route exact path={paths.survey} component={InitialSurvey} />
+        </PageWrapper>
       </React.Fragment>
     )
   }
