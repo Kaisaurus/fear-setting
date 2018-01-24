@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Input, Icon } from 'semantic-ui-react'
 import styled from 'styled-components'
-// import PropTypes from 'prop-types'
-
+import FormBottomBtn from '../FormBottomBtn'
 const encode = data => {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -62,7 +61,7 @@ export default class EmailSignup extends Component {
               onChange={this.handleChange}
               placeholder="Email address"
             />
-            <Form.Button type="submit" content="Sign Up" />
+            <FormBottomBtn content="Sign Up" />
           </CenteredFormGroup>
         )}
       </Form>

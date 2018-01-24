@@ -111,6 +111,7 @@ class Choice extends Component {
         </LargeBtn>
         <Divider />
         <InitialSurvey />
+        <Divider />
       </PageWrapper>
     )
   }
