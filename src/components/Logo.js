@@ -6,8 +6,8 @@ import { localize } from 'react-localize-redux'
 
 const LogoTitle = styled(Header)`
   &&& {
-    font-size: 3em;
-    margin: 0;
+    font-size: 2.4rem;
+    margin: 1rem 0 0;
   }
 `
 const LogoSubtitle = styled.p`

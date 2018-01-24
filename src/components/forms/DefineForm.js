@@ -10,6 +10,7 @@ import Title from '../Title'
 const ChallengeWrapper = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `
 const InputWrapper = styled.div`
   flex: 1 0 auto;
@@ -77,10 +78,10 @@ class DefineForm extends Component {
           </InputWrapper>
         </ChallengeWrapper>
         {showAlert && <AlertTxt>{translate('define.alert')}</AlertTxt>}
+        <NextBtn onClick={this.handleNext} translate={translate} />
         {challenge !== '' && (
           <ClearBtn translate={translate} onClick={handleReset} />
         )}
-        <NextBtn onClick={this.handleNext} translate={translate} />
       </Form>
     )
   }

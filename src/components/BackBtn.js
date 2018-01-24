@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
+import FormBottomBtn from './FormBottomBtn'
 
 export default function BackBtn({ onClick, translate }) {
   return (
-    <Button onClick={onClick} type="button">
+    <FormBottomBtn onClick={onClick}>
       <Icon name="arrow left" />
       {translate('button.back')}
-    </Button>
+    </FormBottomBtn>
   )
 }
 

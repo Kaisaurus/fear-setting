@@ -6,6 +6,7 @@ import RemoveBtn from '../RemoveBtn'
 import AlertTxt from '../AlertTxt'
 import NextBtn from '../NextBtn'
 import BackBtn from '../BackBtn'
+import FormBottomBtn from '../FormBottomBtn'
 
 const InputWrapper = styled.div`
   flex: 1 0 auto;
@@ -89,10 +90,10 @@ class MultiInputForm extends Component {
         {showAlert && (
           <AlertTxt>{translate(`${translateItem}.alert`)}</AlertTxt>
         )}
-        <Button type="button" onClick={handleAdd} basic>
+        <FormBottomBtn type="button" onClick={handleAdd} basic>
           <Icon name="plus" />
           {translate('button.add')}
-        </Button>
+        </FormBottomBtn>
         <BackBtn onClick={handleBack} translate={translate} />
         <NextBtn onClick={this.handleNext} translate={translate} />
       </Form>

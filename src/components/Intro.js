@@ -6,7 +6,7 @@ import Subtitle from './Subtitle'
 
 export default function Intro() {
   return (
-    <Grid divided="vertically">
+    <Grid divided="vertically" stackable>
       <Grid.Row columns={2}>
         <Grid.Column>
           <Subtitle>

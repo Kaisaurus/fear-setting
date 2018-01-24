@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
+import FormBottomBtn from './FormBottomBtn'
 
 export default function NextBtn({ onClick, translate }) {
   return (
-    <Button onClick={onClick} type="button">
+    <FormBottomBtn onClick={onClick}>
       {translate('button.next')}
       <Icon name="arrow right" />
-    </Button>
+    </FormBottomBtn>
   )
 }
 

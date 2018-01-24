@@ -13,7 +13,7 @@ const QuoteContainer = styled(Container)`
 
 const QuoteContent = styled.q`
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.4rem;
 `
 
 const Quote = props => {

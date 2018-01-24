@@ -10,10 +10,10 @@ import Benefit from '../pages/Benefit'
 import Inaction from '../pages/Inaction'
 import Choice from '../pages/Choice'
 import RoughDesign from '../pages/RoughDesign'
-import InitialSurvey from '../components/InitialSurvey'
 import Logo from '../components/Logo'
 import PageWrapper from '../components/PageWrapper'
 import paths from '../utils/paths'
+import SurveyForm from '../components/forms/SurveyForm'
 
 class App extends Component {
   render() {
@@ -30,7 +30,7 @@ class App extends Component {
           <Route exact path={paths.inaction} component={Inaction} />
           <Route exact path={paths.choice} component={Choice} />
           <Route exact path={paths.design} component={RoughDesign} />
-          <Route exact path={paths.survey} component={InitialSurvey} />
+          <Route exact path={paths.survey} component={SurveyForm} />
         </PageWrapper>
       </React.Fragment>
     )

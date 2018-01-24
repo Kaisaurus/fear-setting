@@ -1,23 +1,42 @@
 import React from 'react'
 import Subtitle from '../components/Subtitle'
+import SurveyForm from './forms/SurveyForm'
 
-export default () => {
-  return (
-    <div>
-      <Subtitle>
-        I would be incredibly grateful if you have a moment for some feedback!
-      </Subtitle>
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSfqn6RPwusBeu34fZf4BBHNLwb9_T5KdcczJrmsRCkoXieuFQ/viewform?embedded=true"
-        width="760"
-        height="1650"
-        frameBorder="0"
-        marginHeight="0"
-        marginWidth="0"
-        title="Google Forms Survey"
-      >
-        Loading...
-      </iframe>
-    </div>
-  )
+export default class InitialSurvey {
+  state = {
+    isMobile: false
+  }
+  componentDidMount() {
+    this.props.media({ minWidth: 768 }, () => {
+      this.setState({
+        isMobile: false
+      })
+    })
+    this.props.media({ maxWidth: 768 }, () => {
+      this.setState({
+        isMobile: true
+      })
+    })
+  }
+  render() {
+    const { isMobile } = this.state
+    return (
+      <React.Fragment>
+        {isMobile ? (
+          <Subtitle>
+            I would be incredibly grateful if you have a moment to{' '}
+            <a href="survey">fill in a short survey </a>for some feedback!
+          </Subtitle>
+        ) : (
+          <React.Fragment>
+            <Subtitle>
+              I would be incredibly grateful if you have a moment for some
+              feedback!
+            </Subtitle>
+            <SurveyForm />
+          </React.Fragment>
+        )}
+      </React.Fragment>
+    )
+  }
 }
