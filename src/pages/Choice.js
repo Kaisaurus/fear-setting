@@ -13,6 +13,13 @@ import ClearBtn from '../components/ClearBtn'
 import { setAcceptable, resetForm } from '../actions/challengeActions'
 import FearOverview from '../components/overview/FearOverview'
 import paths from '../utils/paths'
+import styled from 'styled-components'
+
+const LargeBtn = styled(Button)`
+  && {
+    margin: 0.25em;
+  }
+`
 
 class Choice extends Component {
   static displayName = 'Choice'
@@ -96,12 +103,12 @@ class Choice extends Component {
         {challenge === '' && (
           <ClearBtn translate={translate} onClick={resetForm} />
         )}
-        <Button size="large" disabled>
+        <LargeBtn size="large" disabled>
           Send a Reminder
-        </Button>
-        <Button size="large" disabled>
+        </LargeBtn>
+        <LargeBtn size="large" disabled>
           Save to Account
-        </Button>
+        </LargeBtn>
         <Divider />
         <InitialSurvey />
       </PageWrapper>
