@@ -61,7 +61,7 @@ export default class EmailSignup extends Component {
               onChange={this.handleChange}
               placeholder="Email address"
             />
-            <FormBottomBtn content="Sign Up" />
+            <FormBottomBtn>Sign up</FormBottomBtn>
           </CenteredFormGroup>
         )}
       </Form>

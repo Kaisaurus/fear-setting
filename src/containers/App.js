@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Route } from 'react-router-dom'
-import Analytics from '../utils/Analytics'
+// import Analytics from '../utils/Analytics'
 import Define from '../pages/Define'
 import Fear from '../pages/Fear'
 import Prevent from '../pages/Prevent'
@@ -21,7 +21,7 @@ class App extends Component {
       <React.Fragment>
         <PageWrapper>
           <Route path={paths.root} component={Logo} />
-          <Route path={paths.root} component={Analytics} />
+          {/* <Route path={paths.root} component={Analytics} /> */}
           <Route exact path={paths.root} component={Define} />
           <Route exact path={paths.fear} component={Fear} />
           <Route exact path={paths.prevent} component={Prevent} />
