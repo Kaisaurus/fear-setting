@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Form, Button } from 'semantic-ui-react'
+import { Icon, Form } from 'semantic-ui-react'
 import styled from 'styled-components'
 import RemoveBtn from '../RemoveBtn'
 import AlertTxt from '../AlertTxt'
