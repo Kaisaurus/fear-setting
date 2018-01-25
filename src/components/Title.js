@@ -4,7 +4,7 @@ import { Header } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 const TitleHeader = styled(Header)`
-  &&&&& {
+  &&& {
     font-size: 1.8rem;
     /* margin-top: 1em; */
   }
