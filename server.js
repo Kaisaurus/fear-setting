@@ -10,16 +10,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-const Session = sequelize.define('session', {
+const State = sequelize.define('states', {
   body: {
     type: Sequelize.JSONB
   }
 })
 
-Session.sync() // ({force: true})
+State.sync() // ({force: true})
 
-app.get('/sessions', (req, res) => {
-  sessions = Session.findAll().then((sessions) => {
+app.get('/states', (req, res) => {
+  states = State.findAll().then((states) => {
     res.send(`
       <html>
         <head>
@@ -27,22 +27,22 @@ app.get('/sessions', (req, res) => {
         <body>
           <script>
             window.onload = function(){
-              for(el of document.getElementsByClassName('restore_session')) {
+              for(el of document.getElementsByClassName('restore_state')) {
                 el.onclick = function(){
-                  localStorage.setItem('persist:root', unescape(this.getAttribute('data-session')))
+                  localStorage.setItem('persist:root', unescape(this.getAttribute('data-state')))
                   window.location = '/'
                   return false;
                 }
               }
-              let session = JSON.parse(localStorage.getItem('persist:root'))
-              let sessionChallenge = JSON.parse(session.challenge).challenge
-              document.getElementsByClassName('current_session')[0].innerText = sessionChallenge
-              document.getElementById('sessionBodyInput').value = JSON.stringify(session)
+              let state = JSON.parse(localStorage.getItem('persist:root'))
+              let stateChallenge = JSON.parse(state.challenge).challenge
+              document.getElementsByClassName('current_state')[0].innerText = stateChallenge
+              document.getElementById('stateBodyInput').value = JSON.stringify(state)
             }
           </script>
-          <form method='post'>current session: <span class='current_session'></span><input type='submit' value='save' /><input type='hidden' id='sessionBodyInput' name='body' /></form>
+          <form method='post'>current state: <span class='current_state'></span><input type='submit' value='save' /><input type='hidden' id='stateBodyInput' name='body' /></form>
           <ol>
-            ${sessions.map((session) => {return `<li>${session.body.challenge} <a href='#' class='restore_session' data-session="${escape(JSON.stringify(session.body))}">restore</a></li>`}).join('')}
+            ${states.map((state) => {return `<li>${state.body.challenge} <a href='#' class='restore_state' data-state="${escape(JSON.stringify(state.body))}">restore</a></li>`}).join('')}
           </ol>
         </body>
       </html>
@@ -50,9 +50,9 @@ app.get('/sessions', (req, res) => {
   })
 })
 
-app.post('/sessions', (req, res) => {
-  Session.create({body: JSON.parse(req.body.body)}).then(()=> {
-    res.redirect('/sessions')
+app.post('/states', (req, res) => {
+  State.create({body: JSON.parse(req.body.body)}).then(()=> {
+    res.redirect('/states')
   })
 })
 
