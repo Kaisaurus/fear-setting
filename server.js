@@ -16,7 +16,7 @@ const Session = sequelize.define('session', {
   }
 })
 
-Session.sync()
+Session.sync() // ({force: true})
 
 app.get('/sessions', (req, res) => {
   sessions = Session.findAll().then((sessions) => {
@@ -27,6 +27,13 @@ app.get('/sessions', (req, res) => {
         <body>
           <script>
             window.onload = function(){
+              for(el of document.getElementsByClassName('restore_session')) {
+                el.onclick = function(){
+                  localStorage.setItem('persist:root', unescape(this.getAttribute('data-session')))
+                  window.location = '/'
+                  return false;
+                }
+              }
               let session = JSON.parse(localStorage.getItem('persist:root'))
               let sessionChallenge = JSON.parse(session.challenge).challenge
               document.getElementsByClassName('current_session')[0].innerText = sessionChallenge
@@ -35,7 +42,7 @@ app.get('/sessions', (req, res) => {
           </script>
           <form method='post'>current session: <span class='current_session'></span><input type='submit' value='save' /><input type='hidden' id='sessionBodyInput' name='body' /></form>
           <ol>
-            ${sessions.map((session) => {return `<li>${session.body.challenge}</li>`}).join('')}
+            ${sessions.map((session) => {return `<li>${session.body.challenge} <a href='#' class='restore_session' data-session="${escape(JSON.stringify(session.body))}">restore</a></li>`}).join('')}
           </ol>
         </body>
       </html>
