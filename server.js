@@ -75,7 +75,15 @@ app.get('/states', (req, res) => {
               <form method='post' action='/session'><input type='hidden' name='_method' value='delete' /><input type='submit' value='logout' /></form>
               <form method='post'>current state: <span class='current_state'></span><input type='submit' value='save' /><input type='hidden' id='stateBodyInput' name='body' /></form>
               <ol>
-                ${states.map((state) => {return `<li>${state.body.challenge} <a href='#' class='restore_state' data-state="${escape(JSON.stringify(state.body))}">restore</a></li>`}).join('')}
+                ${states.map((state) => {return `
+                  <li>${state.body.challenge}
+                    <a href='#' class='restore_state' data-state="${escape(JSON.stringify(state.body))}">restore</a>
+                    <form method='post' action='/states/${state.id}'>
+                      <input type='hidden' name='_method' value='delete' />
+                      <input type='submit' value='delete' />
+                    </form>
+                  </li>
+                `}).join('')}
               </ol>
             </body>
           </html>
@@ -91,6 +99,16 @@ app.post('/states', (req, res) => {
   currentAccount(req).then((account) => {
     account.createState({body: JSON.parse(req.body.body)}).then(()=> {
       res.redirect('/states')
+    })
+  })
+})
+
+app.post('/states/:id', (req, res) => {
+  currentAccount(req).then(account => {
+    account.getStates({where: {id: req.params.id}}).then(state => {
+      account.removeState(state).then(() => {
+        res.redirect('/states')
+      })
     })
   })
 })
