@@ -4,7 +4,7 @@ const port = process.env.PORT || 5000;
 const proxy = require('http-proxy-middleware')
 const Sequelize = require('sequelize');
 const bodyParser = require('body-parser')
-const sequelize = new Sequelize('postgres://localhost:5432/fear-setting_development');
+const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/fear-setting_development');
 const bcrypt = require('bcrypt');
 const session = require('express-session')
 
