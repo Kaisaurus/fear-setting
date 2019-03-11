@@ -33,10 +33,10 @@ const Account = sequelize.define('accounts', {
 })
 
 Account.hasMany(State)
-State.belongsTo(Account)
-
-State.sync() //({force: true})
 Account.sync({})
+
+State.belongsTo(Account)
+State.sync() //({force: true})
 
 // HELPERS
 
