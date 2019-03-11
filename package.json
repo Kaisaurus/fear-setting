@@ -29,7 +29,7 @@
     "styled-components": "^2.4.0"
   },
   "scripts": {
-    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "start": "concurrently \"yarn run server\" \"PORT=3000 yarn run client\"",
     "server": "node server.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
